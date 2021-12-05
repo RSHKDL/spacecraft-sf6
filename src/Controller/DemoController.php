@@ -6,11 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController extends AbstractController
+class DemoController extends AbstractController
 {
-    #[Route('test', name: 'app_test')]
-    public function test(): Response
+    #[Route('demo', name: 'app_demo')]
+    public function index(): Response
     {
-        return new Response('ok, symfony 6 is setup');
+        return $this->render(
+            'demo/index.html.twig'
+        );
     }
 }

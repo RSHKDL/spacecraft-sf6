@@ -1,0 +1,13 @@
+###> PHPStorm ###
+.idea/
+###< PHPStorm ###
+
+###> Docker ###
+docker-env
+docker-compose.yaml
+docker/nginx/log
+###< Docker ###
+
+###> Data ###
+data/*
+###< Data ###

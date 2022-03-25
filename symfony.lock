@@ -1,6 +1,21 @@
 {
+    "clue/stdio-react": {
+        "version": "v2.6.0"
+    },
+    "clue/term-react": {
+        "version": "v1.3.0"
+    },
+    "clue/utf8-react": {
+        "version": "v1.2.0"
+    },
     "doctrine/instantiator": {
         "version": "1.4.0"
+    },
+    "evenement/evenement": {
+        "version": "v3.0.1"
+    },
+    "jolicode/jolinotif": {
+        "version": "v2.4.0"
     },
     "myclabs/deep-copy": {
         "version": "1.10.2"
@@ -67,6 +82,12 @@
     "psr/log": {
         "version": "3.0.0"
     },
+    "react/event-loop": {
+        "version": "v1.3.0"
+    },
+    "react/stream": {
+        "version": "v1.2.0"
+    },
     "sebastian/cli-parser": {
         "version": "1.0.1"
     },
@@ -114,6 +135,9 @@
     },
     "sebastian/version": {
         "version": "3.0.2"
+    },
+    "spatie/phpunit-watcher": {
+        "version": "1.23.6"
     },
     "symfony/browser-kit": {
         "version": "v6.0.0"
@@ -187,7 +211,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "5.4",
-            "ref": "d4131812e20853626928e73d3effef44014944c0"
+            "ref": "3cd216a4d007b78d8554d44a5b1c0a446dab24fb"
         },
         "files": [
             "config/packages/cache.yaml",
@@ -233,13 +257,16 @@
     "symfony/polyfill-php81": {
         "version": "v1.23.0"
     },
+    "symfony/process": {
+        "version": "v6.0.5"
+    },
     "symfony/routing": {
         "version": "6.0",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "6.0",
-            "ref": "ab9ad892b7bba7ac584f6dc2ccdb659d358c63c5"
+            "ref": "eb3b377a4dc07006c4bdb2c773652cc9434f5246"
         },
         "files": [
             "config/packages/routing.yaml",
@@ -270,7 +297,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "5.4",
-            "ref": "bffbb8f1a849736e64006735afae730cb428b6ff"
+            "ref": "bb2178c57eee79e6be0b297aa96fc0c0def81387"
         },
         "files": [
             "config/packages/twig.yaml",
@@ -288,13 +315,12 @@
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "3.3",
-            "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+            "version": "5.3",
+            "ref": "24bbc3d84ef2f427f82104f766014e799eefcc3e"
         },
         "files": [
-            "config/packages/dev/web_profiler.yaml",
-            "config/packages/test/web_profiler.yaml",
-            "config/routes/dev/web_profiler.yaml"
+            "config/packages/web_profiler.yaml",
+            "config/routes/web_profiler.yaml"
         ]
     },
     "symfony/yaml": {
@@ -308,5 +334,8 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
+    },
+    "yosymfony/resource-watcher": {
+        "version": "v3.0.0"
     }
 }

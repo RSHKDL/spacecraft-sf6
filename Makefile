@@ -75,7 +75,10 @@ assets-dump-routes: ## Dump routes for FOSJsRoutingBundle
 test: ## Execute the test suite
 	$(COMPOSE) exec php bin/phpunit
 
-.PHONY: test
+test-watch: ## Execute the test suite in watch mode
+	$(COMPOSE) exec php vendor/bin/phpunit-watcher watch
+
+.PHONY: test test-watch
 
 ##
 ## ----------------------------------------------------------------------------

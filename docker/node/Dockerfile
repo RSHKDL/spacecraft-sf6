@@ -1,4 +1,4 @@
-FROM node:17-alpine
+FROM node:18-alpine
 
 LABEL maintainer="Julien Helfer <jhelfer@clever-age.com>" \
       version="1.0.0" \
@@ -7,7 +7,8 @@ LABEL maintainer="Julien Helfer <jhelfer@clever-age.com>" \
 # Install some packages we need using Alpine Linux package management
 RUN apk add --update \
     make \
-    curl
+    curl \
+    bash
 
 WORKDIR /var/www/symfony
 

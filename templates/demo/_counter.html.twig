@@ -1,5 +1,13 @@
-<button data-controller="counter" class="btn btn-primary">
-    I have been clicked
-    <span data-counter-target="amount">0</span>
-    times <span data-counter-target="emote">🥺</span>
-</button>
+<div data-controller="counter">
+    <button
+        class="btn btn-primary"
+        data-action="click->counter#increment" {# could be simplified into counter#increment because click-> is default for button #}
+    >
+        Click me!
+    </button>
+    <div>
+        I have been clicked
+        <span data-counter-target="amount">0</span>
+        times <span data-counter-target="emote">🥺</span>
+    </div>
+</div>

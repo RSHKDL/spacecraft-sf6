@@ -4,6 +4,9 @@ body {
     background-color: lightgray;
 }
 
-#main {
-    margin: 0 10%;
+#header {
+    background-color: #282525;
+    color: white;
+    padding: 1em 2em;
+    margin-bottom: 1em;
 }

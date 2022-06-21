@@ -3,8 +3,22 @@
 {% block title %}Stimulus Demo{% endblock %}
 
 {% block body %}
-    <div id="main">
-        <h1>Stimulus Demo</h1>
-        <button class="btn btn-primary">Hit me!</button>
+    {{ include('demo/_header.html.twig') }}
+    <div class="container">
+        <div class="row">
+            <section class="col-9">
+                <h2>Hello, I'm a section</h2>
+                <button class="btn btn-primary">Hit me!</button>
+                <div data-controller="counter"></div>
+            </section>
+            <aside class="col">
+                <ul class="list-unstyled">
+                    <li>I'm</li>
+                    <li>an</li>
+                    <li>aside</li>
+                </ul>
+                <div data-controller="counter"></div>
+            </aside>
+        </div>
     </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {{ form_start(form) }}
-    <div data-controller="color-box">
+    <div {{ stimulus_controller('color-box', { 'color-id': colors[0].id }) }}>
         {{ form_widget(form.color, {
-            attr: { "data-color-box-target": "select" }
+            attr: { 'data-color-box-target': 'select' }
         }) }}
         {% for color in colors %}
             <button

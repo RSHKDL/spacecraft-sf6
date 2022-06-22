@@ -1,8 +1,20 @@
 {{ form_start(form) }}
-    {{ form_widget(form.color) }}
+    <div data-controller="color-box">
+        {{ form_widget(form.color, {
+            attr: { "data-color-box-target": "select" }
+        }) }}
         {% for color in colors %}
-            <span class="color-box" style="background-color: #{{ color.context['hex'] }}"></span>
+            <button
+                type="button"
+                class="color-box btn"
+                data-action="color-box#selectColor"
+                data-color-box-target="colorSquare"
+                data-color-id="{{ color.id }}"
+                aria-label="Choose the color {{ color.value }}"
+                style="background-color: #{{ color.context['hex'] }}"
+            ></button>
         {% endfor %}
+    </div>
     {{ form_widget(form.quantity) }}
     <button type="submit" class="btn btn-primary">Add to cart</button>
 {{ form_end(form) }}

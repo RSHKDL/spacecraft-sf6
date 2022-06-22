@@ -1,0 +1,8 @@
+{{ form_start(form) }}
+    {{ form_widget(form.color) }}
+        {% for color in colors %}
+            <span class="color-box" style="background-color: #{{ color.context['hex'] }}"></span>
+        {% endfor %}
+    {{ form_widget(form.quantity) }}
+    <button type="submit" class="btn btn-primary">Add to cart</button>
+{{ form_end(form) }}

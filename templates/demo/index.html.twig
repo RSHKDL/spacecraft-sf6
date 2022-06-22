@@ -16,7 +16,14 @@
             </aside>
         </div>
         <div class="row">
+            <hr>
             <div data-controller="really-basic-counter"></div>
+        </div>
+        <div class="row">
+            <hr>
+            <h2>{{ product.name }}</h2>
+            <small>{{ product.sku }}</small>
+            {{ include('demo/_add_to_cart.html.twig') }}
         </div>
     </div>
 {% endblock %}

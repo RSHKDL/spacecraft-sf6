@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\ProductOptions;
+use App\Entity\ProductOption;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ProductOptions>
+ * @extends ServiceEntityRepository<ProductOption>
  *
- * @method ProductOptions|null find($id, $lockMode = null, $lockVersion = null)
- * @method ProductOptions|null findOneBy(array $criteria, array $orderBy = null)
- * @method ProductOptions[]    findAll()
- * @method ProductOptions[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ProductOption|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ProductOption|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ProductOption[]    findAll()
+ * @method ProductOption[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ProductOptionsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ProductOptions::class);
+        parent::__construct($registry, ProductOption::class);
     }
 
-    public function add(ProductOptions $entity, bool $flush = false): void
+    public function add(ProductOption $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ProductOptionsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(ProductOptions $entity, bool $flush = false): void
+    public function remove(ProductOption $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

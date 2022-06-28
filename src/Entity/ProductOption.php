@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\ProductOptionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductOptionsRepository::class)]
-class ProductOptions
+class ProductOption
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -25,8 +27,13 @@ class ProductOptions
     #[ORM\Column(type: 'json', nullable: true)]
     private array $context = [];
 
-    #[ORM\ManyToOne(targetEntity: Product::class)]
-    private Product $product;
+    #[ORM\ManyToMany(targetEntity: Product::class, mappedBy: 'options')]
+    private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -81,15 +88,31 @@ class ProductOptions
         return $this;
     }
 
-    public function getProduct(): ?Product
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
     {
-        return $this->product;
+        return $this->products;
     }
 
-    public function setProduct(?Product $product): self
+    public function addProduct(Product $product): self
     {
-        $this->product = $product;
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->addOption($this);
+        }
 
         return $this;
     }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->removeElement($product)) {
+            $product->removeOption($this);
+        }
+
+        return $this;
+    }
+    
 }

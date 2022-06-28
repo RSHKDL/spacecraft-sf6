@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\CartItem;
 use App\Entity\Product;
-use App\Entity\ProductOptions;
+use App\Entity\ProductOption;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -21,7 +21,7 @@ class AddItemToCartType extends AbstractType
         $builder->setData(new CartItem($product));
         $builder
             ->add('color', EntityType::class, [
-                'class' => ProductOptions::class,
+                'class' => ProductOption::class,
                 'choices' => $productOptions,
                 'placeholder' => 'Color',
                 'choice_label' => 'value',

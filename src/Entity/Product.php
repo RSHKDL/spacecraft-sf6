@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -18,6 +20,15 @@ class Product implements \Stringable
 
     #[ORM\Column(type: 'string', length: 510)]
     private string $name;
+
+    #[ORM\ManyToMany(targetEntity: ProductOption::class, inversedBy: 'products')]
+    #[ORM\JoinTable(name: 'product_has_option')]
+    private Collection $options;
+
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+    }
 
     public function __toString(): string
     {
@@ -47,6 +58,30 @@ class Product implements \Stringable
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductOption>
+     */
+    public function getOptions(): Collection
+    {
+        return $this->options;
+    }
+
+    public function addOption(ProductOption $option): self
+    {
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+        }
+
+        return $this;
+    }
+
+    public function removeOption(ProductOption $option): self
+    {
+        $this->options->removeElement($option);
 
         return $this;
     }

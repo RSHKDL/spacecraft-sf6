@@ -1,0 +1,88 @@
+[
+  {
+    "code": "opt-color-1",
+    "type": "color",
+    "value": "forest green",
+    "context": {
+      "hex": "256E25FF"
+    }
+  },
+  {
+    "code": "opt-color-4",
+    "type": "color",
+    "value": "bright red",
+    "context": {
+      "hex": "EC2140FF"
+    }
+  },
+  {
+    "code": "opt-color-5",
+    "type": "color",
+    "value": "sunset yellow",
+    "context": {
+      "hex": "E3B41DFF"
+    }
+  },
+  {
+    "code": "opt-color-7",
+    "type": "color",
+    "value": "pacific blue",
+    "context": {
+      "hex": "286DB4FF"
+    }
+  },
+  {
+    "code": "opt-size-1",
+    "type": "size",
+    "value": "Small",
+    "context": {
+      "intl": "S",
+      "us": 36,
+      "fr": 46
+    }
+  },
+  {
+    "code": "opt-size-2",
+    "type": "size",
+    "value": "Medium",
+    "context": {
+      "intl": "M",
+      "us": 40,
+      "fr": 50
+    }
+  },
+  {
+    "code": "opt-size-3",
+    "type": "size",
+    "value": "Large",
+    "context": {
+      "intl": "L",
+      "us": 44,
+      "fr": 54
+    }
+  },
+  {
+    "code": "opt-material-1",
+    "type": "material",
+    "value": "Cotton",
+    "context": {}
+  },
+  {
+    "code": "opt-material-2",
+    "type": "material",
+    "value": "Synthetic",
+    "context": {}
+  },
+  {
+    "code": "opt-material-3",
+    "type": "material",
+    "value": "Rubber",
+    "context": {}
+  },
+  {
+    "code": "opt-material-4",
+    "type": "material",
+    "value": "Wood",
+    "context": {}
+  }
+]

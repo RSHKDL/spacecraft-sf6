@@ -1,6 +1,32 @@
 [
   {
     "sku": "000K99A271M",
-    "name": "A generic product"
+    "name": "A generic product without options",
+    "options": []
+  },
+  {
+    "sku": "000K99B252K",
+    "name": "A dull rubber ball",
+    "options": [
+      "opt-color-1",
+      "opt-color-4",
+      "opt-color-5",
+      "opt-color-7",
+      "opt-material-3"
+    ]
+  },
+  {
+    "sku": "000K99C1018D",
+    "name": "A boring t-shirt",
+    "options": [
+      "opt-color-1",
+      "opt-color-4",
+      "opt-color-5",
+      "opt-color-7",
+      "opt-size-1",
+      "opt-size-2",
+      "opt-size-3",
+      "opt-material-1"
+    ]
   }
 ]

@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\CartItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CartItemRepository::class)]
+//#[ORM\Entity(repositoryClass: CartItemRepository::class)]
 class CartItem
 {
     #[ORM\Id]
@@ -21,9 +21,6 @@ class CartItem
 
     #[ORM\Column(type: 'integer')]
     private int $quantity = 1;
-
-    #[ORM\ManyToOne(targetEntity: ProductOptions::class)]
-    private ProductOptions $color;
 
     public function __construct(Product $product)
     {
@@ -67,18 +64,6 @@ class CartItem
     public function setQuantity(int $quantity): self
     {
         $this->quantity = $quantity;
-
-        return $this;
-    }
-
-    public function getColor(): ?ProductOptions
-    {
-        return $this->color;
-    }
-
-    public function setColor(?ProductOptions $color): self
-    {
-        $this->color = $color;
 
         return $this;
     }

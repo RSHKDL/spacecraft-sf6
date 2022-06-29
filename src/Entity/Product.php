@@ -70,6 +70,17 @@ class Product implements \Stringable
         return $this->options;
     }
 
+    /**
+     * @param string $type
+     * @return Collection<int, ProductOption>
+     */
+    public function getOptionsByType(string $type): Collection
+    {
+        return $this->options->filter(static function ($option) use ($type) {
+            return $type === $option->getType();
+        });
+    }
+
     public function addOption(ProductOption $option): self
     {
         if (!$this->options->contains($option)) {

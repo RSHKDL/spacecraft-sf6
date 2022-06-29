@@ -39,6 +39,24 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    public function getDistinctOptionTypeByProduct(Product $product): array
+    {
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT DISTINCT o.type
+            FROM App\Entity\Product p
+            INNER JOIN p.options o
+            WHERE p.id = :id'
+        )
+        ->setParameter('id', $product->getId());
+
+        $results = [];
+        foreach ($query->getArrayResult() as $result) {
+            $results[] = $result['type'];
+        }
+
+        return $results;
+    }
+
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

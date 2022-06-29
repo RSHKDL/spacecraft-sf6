@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\CartItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-//#[ORM\Entity(repositoryClass: CartItemRepository::class)]
+#[ORM\Entity(repositoryClass: CartItemRepository::class)]
 class CartItem
 {
     #[ORM\Id]

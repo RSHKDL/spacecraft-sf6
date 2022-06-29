@@ -8,6 +8,7 @@
             <h1>{{ product.name }}</h1>
             <small><b>#{{ product.id }}</b> {{ product.sku }}</small>
             <p>A fake description</p>
+            {{ include('product/_add_to_cart.html.twig') }}
         </div>
     </div>
 {% endblock %}

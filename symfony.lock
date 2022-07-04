@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.5.0"
+    },
     "clue/stdio-react": {
         "version": "v2.6.0"
     },
@@ -103,6 +106,9 @@
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.12"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v3.7.0"
     },
     "jolicode/jolinotif": {
         "version": "v2.4.0"
@@ -243,6 +249,18 @@
     },
     "spatie/phpunit-watcher": {
         "version": "1.23.6"
+    },
+    "stof/doctrine-extensions-bundle": {
+        "version": "1.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.2",
+            "ref": "e805aba9eff5372e2d149a9ff56566769e22819d"
+        },
+        "files": [
+            "config/packages/stof_doctrine_extensions.yaml"
+        ]
     },
     "symfony/asset": {
         "version": "v6.0.7"

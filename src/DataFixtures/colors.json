@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Astral pearl",
+    "red": 229,
+    "green": 246,
+    "blue": 246
+  },
+  {
+    "name": "Supernovae blue",
+    "red": 7,
+    "green": 68,
+    "blue": 121
+  },
+  {
+    "name": "Factory alloy",
+    "red": 82,
+    "green": 82,
+    "blue": 89
+  },
+  {
+    "name": "Dying sun red",
+    "red": 203,
+    "green": 9,
+    "blue": 9
+  },
+  {
+    "name": "Deep space black",
+    "red": 40,
+    "green": 37,
+    "blue": 37
+  }
+]

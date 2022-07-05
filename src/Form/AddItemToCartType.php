@@ -3,8 +3,7 @@
 namespace App\Form;
 
 use App\Entity\CartItem;
-use App\Entity\Product;
-use App\Entity\ProductOption;
+use App\Entity\Spaceship;
 use http\Exception\InvalidArgumentException;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,34 +15,34 @@ class AddItemToCartType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $product = $options['product'];
-        if (!$product instanceof Product) {
+        $spaceship = $options['spaceship'];
+        if (!$spaceship instanceof Spaceship) {
             throw new InvalidArgumentException();
         }
 
-        $optionsTypes = $options['optionsTypes'];
+        //$optionsTypes = $options['optionsTypes'];
 
-        $builder->setData(new CartItem($product));
+        $builder->setData(new CartItem($spaceship));
 
-        foreach ($optionsTypes as $type) {
+        /*foreach ($optionsTypes as $type) {
             $builder->add("option_{$type}", EntityType::class, [
                 'class' => ProductOption::class,
-                'choices' => $product->getOptionsByType($type),
-                'placeholder' => "app.product.form.placeholder.{$type}",
+                'choices' => $spaceship->getOptionsByType($type),
+                'placeholder' => "app.spaceship.form.placeholder.{$type}",
                 'choice_label' => 'value',
                 'mapped' => false
             ]);
-        }
+        }*/
 
         $builder->add('quantity', IntegerType::class);
-        $builder->add('options');
+        //$builder->add('options');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setRequired(['product', 'optionsTypes']);
-        $resolver->addAllowedTypes('product', Product::class);
-        $resolver->addAllowedTypes('optionsTypes', 'array');
+        $resolver->setRequired(['spaceship']);
+        $resolver->addAllowedTypes('spaceship', Spaceship::class);
+        //$resolver->addAllowedTypes('optionsTypes', 'array');
         $resolver->setDefaults([
             'data_class' => CartItem::class,
         ]);

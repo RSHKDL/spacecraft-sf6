@@ -3,57 +3,52 @@
 namespace App\Controller;
 
 use App\Entity\CartItem;
-use App\Entity\Product;
+use App\Entity\Spaceship;
 use App\Form\AddItemToCartType;
-use App\Repository\ProductOptionsRepository;
-use App\Repository\ProductRepository;
+use App\Repository\SpaceshipRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProductController extends AbstractController
+class ShopController extends AbstractController
 {
     public function __construct(
-        private readonly ProductRepository $productRepository,
-        private readonly ProductOptionsRepository $productOptionsRepository,
+        private readonly SpaceshipRepository $spaceshipRepository,
     ) {}
 
-    #[Route('shop', name: 'app_product_list')]
+    #[Route('shop', name: 'app_shop_list')]
     public function index(): Response
     {
         return $this->render(
-            'product/index.html.twig', [
-                'products' => $this->productRepository->findAll(),
+            'shop/index.html.twig', [
+                'spaceships' => $this->spaceshipRepository->findAll(),
             ]
         );
     }
 
-    #[Route('shop/{id}', name: 'app_product_show')]
-    public function show(Product $product, Request $request): Response
+    #[Route('shop/{id}', name: 'app_shop_show')]
+    public function show(Spaceship $spaceship, Request $request): Response
     {
-        $optionTypes = $this->productRepository->getDistinctOptionTypeByProduct($product);
-
         $form = $this->createForm(AddItemToCartType::class, null, [
-            'product' => $product,
-            'optionsTypes' => $optionTypes
+            'spaceship' => $spaceship,
         ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             /** @var CartItem $cartItem */
             $cartItem = $form->getData();
-            $options = [];
+            /*$options = [];
             foreach ($optionTypes as $type) {
                 $options[] = $form->get("option_{$type}")->getData();
             }
-            $cartItem->setOptions($options);
+            $cartItem->setOptions($options);*/
             dd($cartItem);
         }
 
         return $this->render(
-            'product/show.html.twig', [
-                'product' => $product,
+            'shop/show.html.twig', [
+                'spaceship' => $spaceship,
                 'form' => $form->createView()
             ]
         );

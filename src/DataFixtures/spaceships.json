@@ -1,0 +1,69 @@
+[
+  {
+    "manufacturer": "Weyland-Yutani",
+    "hullNumber": "EA-WYC000115-A2122",
+    "class": "corvette",
+    "type": "civilian",
+    "usage": "exploration",
+    "model": "factory",
+    "propulsion": {
+      "reactor": "fission",
+      "ftlDrive": "jump drive MK-II",
+      "subLightThrusters": "ion thrusters"
+    },
+    "hardware": {
+      "sensors": "Gravitational Sensors",
+      "computer": "I219"
+    },
+    "defense": {
+      "hull": "nanocomposite armor",
+      "shields": "shields"
+    },
+    "offense": {},
+    "auxiliaries": {},
+    "equipments": {},
+    "paintJob": {}
+  },
+  {
+    "manufacturer": "Cerberus",
+    "hullNumber": "MN-CBS000045-K2121",
+    "class": "frigate",
+    "type": "military",
+    "usage": "exploration",
+    "model": "factory",
+    "propulsion": {},
+    "defense": {},
+    "offense": {},
+    "auxiliaries": {},
+    "equipments": {},
+    "paintJob": {}
+  },
+  {
+    "manufacturer": "MCRN",
+    "hullNumber": "MR-MCR000098-L2121",
+    "class": "corvette",
+    "type": "military",
+    "usage": "multiple combat roles",
+    "model": "factory",
+    "propulsion": {},
+    "defense": {},
+    "offense": {},
+    "auxiliaries": {},
+    "equipments": {},
+    "paintJob": {}
+  },
+  {
+    "manufacturer": "MCRN",
+    "hullNumber": "MR-MCR000101-A2122",
+    "class": "frigate",
+    "type": "military",
+    "usage": "combat",
+    "model": "factory",
+    "propulsion": {},
+    "defense": {},
+    "offense": {},
+    "auxiliaries": {},
+    "equipments": {},
+    "paintJob": {}
+  }
+]

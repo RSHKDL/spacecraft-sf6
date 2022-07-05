@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our Shop : All spaceships{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <ul>
+                {% for spaceship in spaceships %}
+                    <li>
+                        <a href="{{ path('app_shop_show', {id: spaceship.id}) }}">{{ spaceship.manufacturer }} - {{ spaceship.class }} - {{ spaceship.type }}</a>
+                        <small>{{ spaceship.hullNumber }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

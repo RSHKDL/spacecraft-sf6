@@ -5,16 +5,16 @@ namespace App\Entity;
 use App\Repository\CartItemRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CartItemRepository::class)]
+// #[ORM\Entity(repositoryClass: CartItemRepository::class)]
 class CartItem
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Product::class)]
-    private Product $product;
+    #[ORM\ManyToOne(targetEntity: Spaceship::class)]
+    private Spaceship $spaceship;
 
     #[ORM\Column(type: 'array', nullable: true)]
     private array $options = [];
@@ -22,9 +22,9 @@ class CartItem
     #[ORM\Column(type: 'integer')]
     private int $quantity = 1;
 
-    public function __construct(Product $product)
+    public function __construct(Spaceship $product)
     {
-        $this->product = $product;
+        $this->spaceship = $product;
     }
 
     public function getId(): ?int
@@ -32,16 +32,14 @@ class CartItem
         return $this->id;
     }
 
-    public function getProduct(): ?Product
+    public function getSpaceship(): ?Spaceship
     {
-        return $this->product;
+        return $this->spaceship;
     }
 
-    public function setProduct(?Product $product): self
+    public function setSpaceship(?Spaceship $spaceship): void
     {
-        $this->product = $product;
-
-        return $this;
+        $this->spaceship = $spaceship;
     }
 
     public function getOptions(): ?array
@@ -49,11 +47,9 @@ class CartItem
         return $this->options;
     }
 
-    public function setOptions(?array $options): self
+    public function setOptions(?array $options): void
     {
         $this->options = $options;
-
-        return $this;
     }
 
     public function getQuantity(): ?int
@@ -61,10 +57,8 @@ class CartItem
         return $this->quantity;
     }
 
-    public function setQuantity(int $quantity): self
+    public function setQuantity(int $quantity): void
     {
         $this->quantity = $quantity;
-
-        return $this;
     }
 }

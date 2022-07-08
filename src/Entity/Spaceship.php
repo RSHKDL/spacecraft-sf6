@@ -32,7 +32,7 @@ class Spaceship
     private string $model;
 
     #[ORM\OneToMany(mappedBy: 'spaceship', targetEntity: PaintJob::class)]
-    private ArrayCollection $paintJobs;
+    private Collection $paintJobs;
 
     public function __construct(string $hullNumber)
     {

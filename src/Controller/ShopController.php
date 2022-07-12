@@ -17,16 +17,19 @@ class ShopController extends AbstractController
     ) {}
 
     #[Route('shop', name: 'app_shop_list')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $searchTerm = $request->query->get('q');
+
         return $this->render(
             'shop/index.html.twig', [
-                'manufacturers' => $this->manufacturerRepository->findAll()
+                'manufacturers' => $this->manufacturerRepository->search($searchTerm),
+                'searchTerm' => $searchTerm
             ]
         );
     }
 
-    #[Route('shop/{id}', name: 'app_shop_show')]
+    #[Route('shop/{slug}', name: 'app_shop_show')]
     public function show(Manufacturer $manufacturer, Request $request): Response
     {
         $form = $this->createForm(CreateCustomSpaceshipType::class);

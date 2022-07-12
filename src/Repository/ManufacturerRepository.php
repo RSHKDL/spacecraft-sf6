@@ -39,28 +39,18 @@ class ManufacturerRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Manufacturer[] Returns an array of Manufacturer objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Manufacturer[] Returns an array of Manufacturer objects
+     */
+    public function search(?string $term): array
+    {
+        $qb = $this->createQueryBuilder('m');
 
-//    public function findOneBySomeField($value): ?Manufacturer
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if ($term) {
+            $qb->andWhere($qb->expr()->like('m.name', ':term'));
+            $qb->setParameter('term', "%$term%");
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }

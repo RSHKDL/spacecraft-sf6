@@ -4,11 +4,23 @@
 
 {% block body %}
     <div class="container">
+        <form>
+            <div class="input-group">
+                <label>
+                    <input
+                            name="q"
+                            value="{{ searchTerm }}"
+                            placeholder="Search manufacturers..."
+                            type="search"
+                    >
+                </label>
+            </div>
+        </form>
         <div class="row">
             <ul>
                 {% for manufacturer in manufacturers %}
                     <li>
-                        <a href="{{ path('app_shop_show', {id: manufacturer.id}) }}">{{ manufacturer.name }}</a>
+                        <a href="{{ path('app_shop_show', {slug: manufacturer.slug}) }}">{{ manufacturer.name }}</a>
                     </li>
                 {% endfor %}
             </ul>

@@ -1,15 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Our Shop : All spaceships{% endblock %}
+{% block title %}Our Shop : All manufacturer{% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="row">
             <ul>
-                {% for spaceship in spaceships %}
+                {% for manufacturer in manufacturers %}
                     <li>
-                        <a href="{{ path('app_shop_show', {id: spaceship.id}) }}">{{ spaceship.manufacturer }} - {{ spaceship.class }} - {{ spaceship.type }}</a>
-                        <small>{{ spaceship.hullNumber }}</small>
+                        <a href="{{ path('app_shop_show', {id: manufacturer.id}) }}">{{ manufacturer.name }}</a>
                     </li>
                 {% endfor %}
             </ul>

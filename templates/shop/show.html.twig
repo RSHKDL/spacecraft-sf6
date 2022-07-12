@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Our Shop : {{ spaceship.manufacturer }} - {{ spaceship.class }}{% endblock %}
+{% block title %}Our Shop : {{ manufacturer.name }}{% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="row">
-            <h1>{{ spaceship.manufacturer }} - {{ spaceship.class }} - {{ spaceship.type }}</h1>
-            <small><b>#{{ spaceship.id }}</b> {{ spaceship.hullNumber }}</small>
+            <h1>{{ manufacturer.name }}</h1>
+            <small><b>#{{ manufacturer.id }}</b> fake ref</small>
             <p>A fake description</p>
-            {{ include('shop/_add_to_cart.html.twig') }}
+            {#{{ include('shop/_add_to_cart.html.twig') }}#}
         </div>
     </div>
 {% endblock %}

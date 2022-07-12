@@ -20,11 +20,18 @@ class ShopController extends AbstractController
     public function index(Request $request): Response
     {
         $searchTerm = $request->query->get('q');
+        $manufacturers = $this->manufacturerRepository->search($searchTerm);
+
+        if ($request->query->get('preview')) {
+            return $this->render('shop/_searchPreview.html.twig', [
+                'manufacturers' => $manufacturers,
+            ]);
+        }
 
         return $this->render(
             'shop/index.html.twig', [
-                'manufacturers' => $this->manufacturerRepository->search($searchTerm),
-                'searchTerm' => $searchTerm
+                'manufacturers' => $manufacturers,
+                'searchTerm' => $searchTerm,
             ]
         );
     }

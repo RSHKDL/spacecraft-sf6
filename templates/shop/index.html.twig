@@ -5,15 +5,17 @@
 {% block body %}
     <div class="container">
         <form>
-            <div class="input-group">
+            <div {{ stimulus_controller('search-preview', {url: path('app_shop_list')}) }}>
                 <label>
                     <input
-                            name="q"
-                            value="{{ searchTerm }}"
-                            placeholder="Search manufacturers..."
-                            type="search"
+                        name="q"
+                        value="{{ searchTerm }}"
+                        placeholder="Search manufacturers..."
+                        type="search"
+                        data-action="search-preview#onSearchInput"
                     >
                 </label>
+                <div data-search-preview-target="result"></div>
             </div>
         </form>
         <div class="row">

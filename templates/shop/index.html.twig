@@ -3,29 +3,19 @@
 {% block title %}Our Shop : All manufacturer{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <form>
-            <div {{ stimulus_controller('search-preview', {url: path('app_shop_list')}) }}>
-                <label>
-                    <input
-                        name="q"
-                        value="{{ searchTerm }}"
-                        placeholder="Search manufacturers..."
-                        type="search"
-                        data-action="search-preview#onSearchInput"
-                    >
-                </label>
-                <div data-search-preview-target="result"></div>
-            </div>
-        </form>
-        <div class="row">
-            <ul>
+    <div class="container mt-3">
+        <header class="row">
+            <h2>All Manufacturers</h2>
+            {{ include('shop/_search.html.twig') }}
+        </header>
+        <section class="row">
+            <ul class="list-unstyled">
                 {% for manufacturer in manufacturers %}
                     <li>
                         <a href="{{ path('app_shop_show', {slug: manufacturer.slug}) }}">{{ manufacturer.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
-        </div>
+        </section>
     </div>
 {% endblock %}

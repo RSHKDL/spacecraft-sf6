@@ -1,7 +1,12 @@
-<div>
+<div class="list-group">
     {% for manufacturer in manufacturers %}
-        <a href="{{ path('app_shop_show', {slug: manufacturer.slug}) }}">{{ manufacturer.name }}</a>
+        <a
+            class="list-group-item list-group-item-action"
+            href="{{ path('app_shop_show', {slug: manufacturer.slug}) }}"
+        >
+            {{ manufacturer.name }}
+        </a>
     {% else %}
-        <div>No results found!</div>
+        <div class="list-group-item">No results found!</div>
     {% endfor %}
 </div>

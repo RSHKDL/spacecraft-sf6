@@ -1,0 +1,15 @@
+<form class="d-flex" role="search">
+    <div {{ stimulus_controller('search-preview', {url: path('app_shop_list')}) }}>
+        <label>
+            <input
+                    name="q"
+                    value="{{ searchTerm }}"
+                    placeholder="Search manufacturers..."
+                    type="search"
+                    data-action="search-preview#onSearchInput"
+                    class="form-control"
+            >
+        </label>
+        <div data-search-preview-target="result"></div>
+    </div>
+</form>

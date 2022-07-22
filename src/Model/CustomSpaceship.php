@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use App\Entity\Manufacturer;
-use Doctrine\Common\Collections\ArrayCollection;
 
 final class CustomSpaceship
 {
@@ -12,10 +11,5 @@ final class CustomSpaceship
     public string $type;
     public string $model;
     public string $name;
-    public array $paintJobs;
-
-    public function __construct()
-    {
-        $this->paintJobs = [];
-    }
+    public array $paintJobs = [];
 }

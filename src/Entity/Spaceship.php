@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Table(name: 'app_spaceship')]
 #[ORM\Entity(repositoryClass: SpaceshipRepository::class)]
-class Spaceship
+class Spaceship implements SpaceshipInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,7 +17,7 @@ class Spaceship
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private string $manufacturer;
+    private Manufacturer $manufacturer;
 
     #[ORM\Column(type: 'string', length: 18)]
     private string $hullNumber;
@@ -45,16 +45,14 @@ class Spaceship
         return $this->id;
     }
 
-    public function getManufacturer(): ?string
+    public function getManufacturer(): Manufacturer
     {
         return $this->manufacturer;
     }
 
-    public function setManufacturer(string $manufacturer): self
+    public function setManufacturer(Manufacturer $manufacturer): void
     {
         $this->manufacturer = $manufacturer;
-
-        return $this;
     }
 
     public function getHullNumber(): ?string

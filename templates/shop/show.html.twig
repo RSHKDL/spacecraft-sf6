@@ -5,10 +5,8 @@
 {% block body %}
     <div class="container mt-3">
         <div class="row">
-            <h2>{{ manufacturer.name }}</h2>
-            <small><b>#{{ manufacturer.id }}</b> fake ref</small>
-            <p>A fake description</p>
-            {#{{ include('shop/_add_to_cart.html.twig') }}#}
+            <h2>Create your <b>{{ manufacturer.name }}</b> spaceship!</h2>
+            {{ include('shop/_createCustomSpaceship.html.twig') }}
         </div>
     </div>
 {% endblock %}

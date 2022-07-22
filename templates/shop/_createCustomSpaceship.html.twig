@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <section class="mb-3">
+        <h3>Select basic info</h3>
+        <div class="row">
+            <div class="col">{{ form_row(form.class) }}</div>
+            <div class="col">{{ form_row(form.type) }}</div>
+            <div class="col">{{ form_row(form.model) }}</div>
+        </div>
+    </section>
+    <section class="mb-3">
+        <h3>Choose your paint jobs</h3>
+        <ul
+            class="js-paint-jobs-holder list-group mb-3"
+            data-index="{{ form.paintJobs|length > 0 ? form.paintJobs|last.vars.name + 1 : 0 }}"
+            data-prototype="{{ form_widget(form.paintJobs.vars.prototype)|e('html_attr') }}"
+        ></ul>
+        <button type="button" class="btn btn-sm btn-primary js_add_item_link" data-collection-holder-class="js-paint-jobs-holder">Add a paint job</button>
+    </section>
+    <button type="submit" class="btn btn-primary">Create my spaceship!</button>
+{{ form_end(form, {render_rest: false}) }}

@@ -44,6 +44,7 @@ class ShopController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             // todo : handle form submission
+            dd($form->getData());
         }
 
         return $this->render(

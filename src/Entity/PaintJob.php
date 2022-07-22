@@ -24,13 +24,6 @@ class PaintJob
     #[ORM\JoinColumn(nullable: false)]
     private Color $color;
 
-    public function __construct(string $region, Spaceship $spaceship, Color $color)
-    {
-        $this->region = $region;
-        $this->spaceship = $spaceship;
-        $this->color = $color;
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -39,6 +32,11 @@ class PaintJob
     public function getRegion(): string
     {
         return $this->region;
+    }
+
+    public function setRegion(string $region): void
+    {
+        $this->region = $region;
     }
 
     public function getSpaceship(): Spaceship
@@ -54,5 +52,10 @@ class PaintJob
     public function getColor(): Color
     {
         return $this->color;
+    }
+
+    public function setColor(Color $color): void
+    {
+        $this->color = $color;
     }
 }

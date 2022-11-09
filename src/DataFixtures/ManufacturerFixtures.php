@@ -2,9 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Color;
 use App\Entity\Manufacturer;
-use App\Entity\Spaceship;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -20,10 +18,12 @@ class ManufacturerFixtures extends Fixture
                 $manufacturer = new Manufacturer($datum['name']);
 
                 $manager->persist($manufacturer);
+                $this->addReference($manufacturer->getName(), $manufacturer);
             }
             $manager->flush();
         } catch (\Throwable $throwable) {
-            // do something like log exceptions...
+            dd($throwable);
+            // log exceptions...
         }
     }
 }

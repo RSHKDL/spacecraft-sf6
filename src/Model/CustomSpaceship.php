@@ -11,5 +11,7 @@ final class CustomSpaceship
     public string $type;
     public string $model;
     public string $name;
+    public array $powerSupply = [];
+    public array $defense = [];
     public array $paintJobs = [];
 }

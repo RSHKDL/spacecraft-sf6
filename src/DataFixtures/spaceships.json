@@ -1,7 +1,7 @@
 [
   {
-    "manufacturer": "Weyland-Yutani",
-    "hullNumber": "EA-WYC000115-A2122",
+    "manufacturer": "Tai-Yong Aerospace",
+    "hullNumber": "TYA-1",
     "class": "corvette",
     "type": "civilian",
     "usage": "exploration",
@@ -25,8 +25,8 @@
     "paintJob": {}
   },
   {
-    "manufacturer": "Cerberus",
-    "hullNumber": "MN-CBS000045-K2121",
+    "manufacturer": "Tai-Yong Aerospace",
+    "hullNumber": "TYA-2",
     "class": "frigate",
     "type": "military",
     "usage": "exploration",
@@ -39,8 +39,8 @@
     "paintJob": {}
   },
   {
-    "manufacturer": "MCRN",
-    "hullNumber": "MR-MCR000098-L2121",
+    "manufacturer": "Blackbones Ltd",
+    "hullNumber": "BB-1",
     "class": "corvette",
     "type": "military",
     "usage": "multiple combat roles",
@@ -53,8 +53,8 @@
     "paintJob": {}
   },
   {
-    "manufacturer": "MCRN",
-    "hullNumber": "MR-MCR000101-A2122",
+    "manufacturer": "Blackbones Ltd",
+    "hullNumber": "BB-2",
     "class": "frigate",
     "type": "military",
     "usage": "combat",

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spaceship: All options{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <header class="row">
+            <h2>All Spaceship Options</h2>
+        </header>
+        <section class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Subtype</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Manufacturer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for option in options %}
+                        {% include 'spaceshipOptions/_row.html.twig' %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+{% endblock %}

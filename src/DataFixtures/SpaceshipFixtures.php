@@ -2,14 +2,22 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Color;
 use App\Entity\Spaceship;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class SpaceshipFixtures extends Fixture
+class SpaceshipFixtures extends Fixture implements DependentFixtureInterface
 {
     use DataFixturesTrait;
+
+    public function getDependencies(): array
+    {
+        return [
+            ManufacturerFixtures::class,
+            OptionsFixtures::class
+        ];
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -17,10 +25,7 @@ class SpaceshipFixtures extends Fixture
             $spaceshipsData = $this->loadData("spaceships");
             foreach ($spaceshipsData as $datum) {
                 $spaceship = new Spaceship($datum['hullNumber']);
-                $spaceship->setManufacturer($datum['manufacturer']);
-                $spaceship->setClass($datum['class']);
-                $spaceship->setType($datum['type']);
-                $spaceship->setModel($datum['model']);
+                $spaceship->setManufacturer($this->getReference($datum['manufacturer']));
 
                 $manager->persist($spaceship);
             }

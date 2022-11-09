@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SpaceshipRepository;
+use App\Spaceship\SpaceshipInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,28 +17,26 @@ class Spaceship implements SpaceshipInterface
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private Manufacturer $manufacturer;
-
     #[ORM\Column(type: 'string', length: 18)]
     private string $hullNumber;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $class;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $type;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $model;
+    #[ORM\ManyToOne(targetEntity: Manufacturer::class)]
+    private Manufacturer $manufacturer;
 
     #[ORM\OneToMany(mappedBy: 'spaceship', targetEntity: PaintJob::class)]
     private Collection $paintJobs;
+
+    #[ORM\JoinTable(name: 'app_spaceships_options')]
+    #[ORM\JoinColumn(name: 'spaceship_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'option_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: BaseOption::class)]
+    private Collection $options;
 
     public function __construct(string $hullNumber)
     {
         $this->hullNumber = $hullNumber;
         $this->paintJobs = new ArrayCollection();
+        $this->options = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,36 +57,6 @@ class Spaceship implements SpaceshipInterface
     public function getHullNumber(): ?string
     {
         return $this->hullNumber;
-    }
-
-    public function getClass(): ?string
-    {
-        return $this->class;
-    }
-
-    public function setClass(string $class): void
-    {
-        $this->class = $class;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): void
-    {
-        $this->type = $type;
-    }
-
-    public function getModel(): ?string
-    {
-        return $this->model;
-    }
-
-    public function setModel(string $model): void
-    {
-        $this->model = $model;
     }
 
     /**
@@ -112,5 +81,13 @@ class Spaceship implements SpaceshipInterface
         if ($this->paintJobs->removeElement($paintJob) && $paintJob->getSpaceship() === $this) {
             $paintJob->setSpaceship(null);
         }
+    }
+
+    /**
+     * @return Collection<int, BaseOption>
+     */
+    public function getOptions(): Collection
+    {
+        return $this->options;
     }
 }

@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Defense;
+use App\Entity\PowerSupply;
 use App\Model\CustomSpaceship;
+use App\Repository\BaseOptionRepository;
+use App\Spaceship\OptionInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -12,6 +16,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CreateCustomSpaceshipType extends AbstractType
 {
+    public function __construct(
+        private readonly BaseOptionRepository $optionRepository
+    ) {}
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -33,6 +41,22 @@ class CreateCustomSpaceshipType extends AbstractType
                 'choices' => $this->getDummyChoices('model'),
                 'placeholder' => 'Choose the model',
                 'label' => false,
+            ])
+            ->add('powerSupply', ChoiceType::class, [
+                'choices' => $this->optionRepository->findByClass(PowerSupply::class),
+                'placeholder' => 'Choose the power supply',
+                'choice_value' => 'name',
+                'choice_label' => fn (OptionInterface $option) => $option->getName(),
+                'label' => false,
+                'multiple' => true,
+            ])
+            ->add('defense', ChoiceType::class, [
+                'choices' => $this->optionRepository->findByClass(Defense::class),
+                'placeholder' => 'Choose a defense',
+                'choice_value' => 'name',
+                'choice_label' => fn (OptionInterface $option) => $option->getName(),
+                'label' => false,
+                'multiple' => true,
             ])
             ->add('paintJobs', CollectionType::class, [
                 'entry_type' => PaintJobType::class,

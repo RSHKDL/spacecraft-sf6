@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Spaceship;
 
 use App\Entity\Manufacturer;
 

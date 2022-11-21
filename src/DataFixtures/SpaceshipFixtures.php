@@ -24,7 +24,7 @@ class SpaceshipFixtures extends Fixture implements DependentFixtureInterface
         try {
             $spaceshipsData = $this->loadData("spaceships");
             foreach ($spaceshipsData as $datum) {
-                $spaceship = new Spaceship($datum['hullNumber']);
+                $spaceship = new Spaceship();
                 $spaceship->setManufacturer($this->getReference($datum['manufacturer']));
 
                 $manager->persist($spaceship);

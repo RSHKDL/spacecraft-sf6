@@ -8,7 +8,8 @@ final class CustomSpaceship
 {
     public Manufacturer $manufacturer;
     public string $class;
-    public string $type;
+    public string $mainRole;
+    public string $secondaryRole;
     public string $model;
     public string $name;
     public array $powerSupply = [];

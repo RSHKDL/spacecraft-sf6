@@ -3,10 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Defense;
+use App\Entity\Manufacturer;
 use App\Entity\PowerSupply;
 use App\Model\CustomSpaceship;
 use App\Repository\BaseOptionRepository;
 use App\Spaceship\OptionInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -23,23 +25,38 @@ class CreateCustomSpaceshipType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
+            /*->add('name', TextType::class, [
                 'label' => 'Name your ship',
                 'required' => true,
+            ])*/
+            ->add('manufacturer', EntityType::class, [
+                'class' => Manufacturer::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Choose the manufacturer',
+                'label' => false,
+            ])
+            ->add('mainRole', ChoiceType::class, [
+                'choices' => $this->getDummyChoices('role'),
+                'placeholder' => 'Choose the main role',
+                'disabled' => true,
+                'label' => false,
+            ])
+            ->add('secondaryRole', ChoiceType::class, [
+                'choices' => $this->getDummyChoices('role'),
+                'placeholder' => 'Choose the secondary role',
+                'disabled' => true,
+                'label' => false,
             ])
             ->add('class', ChoiceType::class, [
                 'choices' => $this->getDummyChoices('class'),
                 'placeholder' => 'Choose the class',
-                'label' => false,
-            ])
-            ->add('type', ChoiceType::class, [
-                'choices' => $this->getDummyChoices('type'),
-                'placeholder' => 'Choose the type',
+                'disabled' => true,
                 'label' => false,
             ])
             ->add('model', ChoiceType::class, [
                 'choices' => $this->getDummyChoices('model'),
                 'placeholder' => 'Choose the model',
+                'disabled' => true,
                 'label' => false,
             ])
             ->add('powerSupply', ChoiceType::class, [
@@ -79,12 +96,12 @@ class CreateCustomSpaceshipType extends AbstractType
      */
     private function getDummyChoices(string $type): array
     {   $classChoices = ['corvette', 'frigate', 'cruiser', 'battleship'];
-        $typeChoices = ['civilian', 'military'];
+        $roleChoices = ['civilian', 'military'];
         $modelChoices = ['factory'];
 
         return match($type) {
             'class' => array_combine($classChoices, $classChoices),
-            'type' => array_combine($typeChoices, $typeChoices),
+            'role' => array_combine($roleChoices, $roleChoices),
             'model' => array_combine($modelChoices, $modelChoices),
         };
     }

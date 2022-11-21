@@ -32,9 +32,8 @@ class Spaceship implements SpaceshipInterface
     #[ORM\ManyToMany(targetEntity: BaseOption::class)]
     private Collection $options;
 
-    public function __construct(string $hullNumber)
+    public function __construct()
     {
-        $this->hullNumber = $hullNumber;
         $this->paintJobs = new ArrayCollection();
         $this->options = new ArrayCollection();
     }
@@ -57,6 +56,11 @@ class Spaceship implements SpaceshipInterface
     public function getHullNumber(): ?string
     {
         return $this->hullNumber;
+    }
+
+    public function setHullNumber(string $number): void
+    {
+        $this->hullNumber = $number;
     }
 
     /**

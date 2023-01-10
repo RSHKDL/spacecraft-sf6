@@ -24,13 +24,13 @@
       "type": "armor",
       "name": "Test Armor A",
       "defense": 50,
-      "manufacturer": "Blackbones Ltd"
+      "manufacturer": "Blackfire Ltd"
     },
     {
       "type": "armor",
       "name": "Test Armor B",
       "defense": 70,
-      "manufacturer": "Blackbones Ltd"
+      "manufacturer": "Blackfire Ltd"
     },
     {
       "type": "shield",

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Corvette",
+    "variants": [
+      "stealth"
+    ]
+  },
+  {
+    "name": "Frigate",
+    "variants": [
+      "light",
+      "heavy",
+      "stealth"
+    ]
+  },
+  {
+    "name": "Destroyer",
+    "alias": "Escort"
+  },
+  {
+    "name": "Cruiser",
+    "variants": [
+      "armored",
+      "heavy"
+    ]
+  },
+  {
+    "name": "Battleship",
+    "alias": "Battlecruiser"
+  },
+  {
+    "name": "Carrier",
+    "variants": [
+      "super",
+      "small"
+    ]
+  }
+]

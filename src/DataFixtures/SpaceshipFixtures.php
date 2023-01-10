@@ -21,7 +21,7 @@ class SpaceshipFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        try {
+        /*try {
             $spaceshipsData = $this->loadData("spaceships");
             foreach ($spaceshipsData as $datum) {
                 $spaceship = new Spaceship();
@@ -33,6 +33,6 @@ class SpaceshipFixtures extends Fixture implements DependentFixtureInterface
         } catch (\Throwable $throwable) {
             dd($throwable);
             // log exceptions...
-        }
+        }*/
     }
 }

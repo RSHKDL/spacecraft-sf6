@@ -7,19 +7,15 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-/**
- * Auto-generated Migration: Please modify to your needs!
- */
 final class Version20221026125125 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Options: first pass at spaceship options';
     }
 
     public function up(Schema $schema): void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE app_option_base (id INT AUTO_INCREMENT NOT NULL, manufacturer_id INT DEFAULT NULL, identifier VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, type VARCHAR(255) NOT NULL, option_type VARCHAR(255) NOT NULL, INDEX IDX_715F723EA23B42D (manufacturer_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE app_option_defense (id INT NOT NULL, defense INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE app_option_power_supply (id INT NOT NULL, power INT NOT NULL, storage INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -36,7 +32,6 @@ final class Version20221026125125 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE app_option_defense DROP FOREIGN KEY FK_1CAB70FEBF396750');
         $this->addSql('ALTER TABLE app_option_power_supply DROP FOREIGN KEY FK_5475EEFABF396750');
         $this->addSql('ALTER TABLE app_spaceships_options DROP FOREIGN KEY FK_70854DBEA7C41D6F');

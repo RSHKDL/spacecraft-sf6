@@ -1,0 +1,37 @@
+[
+  {
+    "manufacturer": "Kennedy-McNamara",
+    "class": "Corvette",
+    "variant": "stealth"
+  },
+  {
+    "manufacturer": "Kennedy-McNamara",
+    "class": "Corvette",
+    "variant": null
+  },
+  {
+    "manufacturer": "Kennedy-McNamara",
+    "class": "Cruiser",
+    "variant": "armored"
+  },
+  {
+    "manufacturer": "Kennedy-McNamara",
+    "class": "Cruiser",
+    "variant": "heavy"
+  },
+  {
+    "manufacturer": "Tai-Yong Aerospace",
+    "class": "Cruiser",
+    "variant": "armored"
+  },
+  {
+    "manufacturer": "Tai-Yong Aerospace",
+    "class": "Cruiser",
+    "variant": null
+  },
+  {
+    "manufacturer": "Tai-Yong Aerospace",
+    "class": "Battleship",
+    "variant": null
+  }
+]

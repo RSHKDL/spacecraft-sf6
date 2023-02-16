@@ -18,11 +18,11 @@ class Blueprint implements SpaceshipInterface
     #[ORM\ManyToOne(targetEntity: Manufacturer::class)]
     private Manufacturer $manufacturer;
 
-    /*#[ORM\ManyToOne(targetEntity: SpaceshipRole::class)]
+    #[ORM\ManyToOne(targetEntity: SpaceshipRole::class)]
     private SpaceshipRole $role;
 
     #[ORM\ManyToOne(targetEntity: SpaceshipClass::class)]
-    private SpaceshipClass $class;*/
+    private SpaceshipClass $class;
 
     public function __construct()
     {
@@ -43,7 +43,7 @@ class Blueprint implements SpaceshipInterface
         $this->manufacturer = $manufacturer;
     }
 
-    /*public function getClass(): SpaceshipClass
+    public function getClass(): SpaceshipClass
     {
         return $this->class;
     }
@@ -61,5 +61,5 @@ class Blueprint implements SpaceshipInterface
     public function setRole(SpaceshipRole $role): void
     {
         $this->role = $role;
-    }*/
+    }
 }

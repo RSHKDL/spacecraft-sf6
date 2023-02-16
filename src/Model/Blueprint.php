@@ -2,13 +2,10 @@
 
 namespace App\Model;
 
-use App\Entity\Manufacturer;
-
 final class Blueprint
 {
-    public Manufacturer $manufacturer;
-    public string $role;
-    public string $class;
-    public string $variant;
-    public string $model;
+    public int $manufacturer;
+    public int $role;
+    public string $className;
+    public string $classVariant;
 }

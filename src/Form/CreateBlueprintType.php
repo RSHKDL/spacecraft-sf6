@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Manufacturer;
-use App\Model\Blueprint;
+use App\Entity\SpaceshipClass;
+use App\Entity\SpaceshipRole;
+use App\Model\Blueprint as BlueprintModel;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,62 +22,71 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class CreateBlueprintType extends AbstractType
 {
-    public function __construct() {}
+    public function __construct(
+        private readonly EntityManagerInterface $entityManager
+    ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        //dd($this->entityManager->getRepository(Manufacturer::class)->findAll());
+        /*
+         * Note : If all variance axis are VarianceAxis just loop over an array of VarianceAxis
+         */
         $builder
-            ->add('manufacturer', EntityType::class, [
-                'class' => Manufacturer::class,
-                'choice_label' => 'name',
+            ->add('manufacturer', ChoiceType::class, [
+                'choices' => [],
                 'placeholder' => 'Choose the manufacturer',
                 'label' => false,
+                'attr' => [
+                    'class' => 'js-select-node',
+                    'data-select-type' => 'manufacturer',
+                    'data-select-mode' => 'basic'
+                ]
             ])
             ->add('role', ChoiceType::class, [
-                'choices' => $this->getDummyChoices('role'),
+                'choices' => [],
                 'placeholder' => 'Choose the main role',
                 'label' => false,
+                'attr' => [
+                    'class' => 'js-select-node',
+                    'data-select-type' => 'role',
+                    'data-select-mode' => 'basic'
+                ]
             ])
-            ->add('class', ChoiceType::class, [
-                'choices' => $this->getDummyChoices('hullClassification'),
+            ->add('className', ChoiceType::class, [
+                'choices' => [],
                 'placeholder' => 'Choose the hull classification',
                 'label' => false,
+                'attr' => [
+                    'class' => 'js-select-node',
+                    'data-select-type' => 'className',
+                    'data-select-mode' => 'combinatorial'
+                ]
             ])
-            ->add('variant', ChoiceType::class, [
-                'choices' => $this->getDummyChoices('hullClassificationVariant'),
+            ->add('classVariant', ChoiceType::class, [
+                'choices' => [],
                 'placeholder' => 'Choose the hull classification variant',
                 'label' => false,
-            ])
-            ->add('model', ChoiceType::class, [
-                'choices' => $this->getDummyChoices('model'),
-                'placeholder' => 'Choose the model',
-                'label' => false,
+                'attr' => [
+                    'class' => 'js-select-node',
+                    'data-select-type' => 'classVariant',
+                    'data-select-mode' => 'combinatorial'
+                ]
             ])
         ;
+
+        // Resetting the view transformer allow any values to be processed by a ChoiceType which is very useful in our case
+        $builder->get('manufacturer')->resetViewTransformers();
+        $builder->get('role')->resetViewTransformers();
+        $builder->get('className')->resetViewTransformers();
+        $builder->get('classVariant')->resetViewTransformers();
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Blueprint::class,
+            'data_class' => BlueprintModel::class,
+            'validation_groups' => false
         ]);
-    }
-
-    /**
-     * Remove when corresponding entities are created
-     */
-    private function getDummyChoices(string $type): array
-    {
-        $roleChoices = ['civilian', 'military'];
-        $hullClassificationChoices = ['corvette', 'frigate', 'destroyer', 'cruiser', 'battleship', 'carrier'];
-        $hullClassificationVariantChoices = ['todo'];
-        $modelChoices = ['factory'];
-
-        return match($type) {
-            'role' => array_combine($roleChoices, $roleChoices),
-            'hullClassification' => array_combine($hullClassificationChoices, $hullClassificationChoices),
-            'hullClassificationVariant' => array_combine($hullClassificationVariantChoices, $hullClassificationVariantChoices),
-            'model' => array_combine($modelChoices, $modelChoices),
-        };
     }
 }

@@ -15,7 +15,7 @@ class MilitaryHullClassificationFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         try {
-            $data = $this->loadData("militaryHullClassification");
+            $data = $this->loadData('militaryHullClassification');
             foreach ($data as $datum) {
                 if (isset($datum['variants'])) {
                     foreach ($datum['variants'] as $variant) {
@@ -24,6 +24,8 @@ class MilitaryHullClassificationFixtures extends Fixture
                         $spaceshipClass->setAlias($datum['alias'] ?? null);
                         $spaceshipClass->setVariant($variant);
                         $manager->persist($spaceshipClass);
+                        $referenceName = $spaceshipClass->getName() . ' ' . $spaceshipClass->getVariant();
+                        $this->addReference($referenceName, $spaceshipClass);
                     }
                 }
 
@@ -31,6 +33,7 @@ class MilitaryHullClassificationFixtures extends Fixture
                 $spaceshipClass->setName($datum['name']);
                 $spaceshipClass->setAlias($datum['alias'] ?? null);
                 $manager->persist($spaceshipClass);
+                $this->addReference($spaceshipClass->getName(), $spaceshipClass);
             }
             $manager->flush();
         } catch (\Throwable $throwable) {

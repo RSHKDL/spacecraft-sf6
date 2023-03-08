@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Used spaceships: validate{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <table class="table">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Hull Number</th>
+                <th scope="col">Name</th>
+                <th scope="col">Classification</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for spaceship in usedSpaceships %}
+                <tr>
+                    <th scope="row">{{ spaceship.hullNumber }}</th>
+                    <td>{{ spaceship.name }}</td>
+                    {% set variant = spaceship.class.variant %}
+                    <td>{{ spaceship.class.name }} {% if variant %}({{ variant }}){% endif %}</td>
+                    <td>todo</td>
+                    <td>todo</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    <div>
+{% endblock %}

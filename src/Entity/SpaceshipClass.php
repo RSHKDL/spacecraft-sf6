@@ -18,10 +18,10 @@ class SpaceshipClass
     private string $name;
 
     #[ORM\Column(type: 'string', length: 64, nullable: true)]
-    private ?string $alias;
+    private ?string $alias = null;
 
     #[ORM\Column(type: 'string', length: 64, nullable: true)]
-    private ?string $variant;
+    private ?string $variant = null;
 
     public function getId(): ?int
     {

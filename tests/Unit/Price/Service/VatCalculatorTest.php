@@ -1,6 +1,6 @@
 <?php
 
-namespace Price\Service;
+namespace Unit\Price\Service;
 
 use App\Price\Service\VatCalculator;
 use JetBrains\PhpStorm\ArrayShape;

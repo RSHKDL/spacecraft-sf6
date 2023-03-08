@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SpaceshipRepository;
+use App\Spaceship\Enum\ConformityInspectionStatus;
+use App\Spaceship\OptionInterface;
 use App\Spaceship\SpaceshipInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,14 +25,18 @@ class Spaceship implements SpaceshipInterface
     #[ORM\ManyToOne(targetEntity: Manufacturer::class)]
     private Manufacturer $manufacturer;
 
+    private SpaceshipClass $class;
+
     #[ORM\OneToMany(mappedBy: 'spaceship', targetEntity: PaintJob::class)]
     private Collection $paintJobs;
 
     #[ORM\JoinTable(name: 'app_spaceships_options')]
     #[ORM\JoinColumn(name: 'spaceship_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'option_id', referencedColumnName: 'id')]
-    #[ORM\ManyToMany(targetEntity: BaseOption::class)]
+    #[ORM\ManyToMany(targetEntity: BaseOption::class, inversedBy: 'spaceships')]
     private Collection $options;
+
+    private ConformityInspectionStatus $conformityInspectionStatus = ConformityInspectionStatus::INSPECTION_REQUIRED;
 
     public function __construct()
     {
@@ -51,6 +57,16 @@ class Spaceship implements SpaceshipInterface
     public function setManufacturer(Manufacturer $manufacturer): void
     {
         $this->manufacturer = $manufacturer;
+    }
+
+    public function getClass(): SpaceshipClass
+    {
+        return $this->class;
+    }
+
+    public function setClass(SpaceshipClass $class): void
+    {
+        $this->class = $class;
     }
 
     public function getHullNumber(): ?string
@@ -88,10 +104,32 @@ class Spaceship implements SpaceshipInterface
     }
 
     /**
-     * @return Collection<int, BaseOption>
+     * @return Collection<int, OptionInterface>
      */
     public function getOptions(): Collection
     {
         return $this->options;
+    }
+
+    public function addOption(OptionInterface $option): void
+    {
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+        }
+    }
+
+    public function removeOption(OptionInterface $option): void
+    {
+        $this->options->removeElement($option);
+    }
+
+    public function getConformityInspectionStatus(): ConformityInspectionStatus
+    {
+        return $this->conformityInspectionStatus;
+    }
+
+    public function setConformityInspectionStatus(ConformityInspectionStatus $status): void
+    {
+        $this->conformityInspectionStatus = $status;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Spaceship\OptionInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -34,10 +36,14 @@ class BaseOption implements OptionInterface
     #[ORM\ManyToOne(targetEntity: Manufacturer::class)]
     protected Manufacturer $manufacturer;
 
+    #[ORM\ManyToMany(targetEntity: Spaceship::class, mappedBy: 'options')]
+    private Collection $spaceships;
+
     public function __construct(string $subtype, string $name)
     {
         $this->type = $subtype;
         $this->name = $name;
+        $this->spaceships = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,5 +84,28 @@ class BaseOption implements OptionInterface
     public function setManufacturer(Manufacturer $manufacturer): void
     {
         $this->manufacturer = $manufacturer;
+    }
+
+    /**
+     * @return Collection<int, Spaceship>
+     */
+    public function getSpaceships(): Collection
+    {
+        return $this->spaceships;
+    }
+
+    public function addSpaceship(Spaceship $spaceship): void
+    {
+        if (!$this->spaceships->contains($spaceship)) {
+            $this->spaceships[] = $spaceship;
+            $spaceship->addOption($this);
+        }
+    }
+
+    public function removeSpaceship(Spaceship $spaceship): void
+    {
+        if ($this->spaceships->removeElement($spaceship)) {
+            $spaceship->removeOption($this);
+        }
     }
 }

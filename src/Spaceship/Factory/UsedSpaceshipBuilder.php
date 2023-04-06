@@ -13,11 +13,15 @@ final class UsedSpaceshipBuilder
 
     public function buildUsedSpaceship(): UsedSpaceshipModel
     {
-        return new UsedSpaceshipModel(
+        $model = new UsedSpaceshipModel(
             $this->name,
             $this->hullNumber,
             $this->createShipClassification()
         );
+
+        $this->generateAndSetSlug($model);
+
+        return $model;
     }
 
     public function setName(string $name): self
@@ -37,6 +41,13 @@ final class UsedSpaceshipBuilder
     public function setFullClassName(string $fullClassName): self
     {
         $this->fullClassName = $fullClassName;
+
+        return $this;
+    }
+
+    public function generateAndSetSlug(UsedSpaceshipModel $model): self
+    {
+        $model->slug = mb_strtolower($this->name);
 
         return $this;
     }

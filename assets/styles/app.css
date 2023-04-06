@@ -17,3 +17,19 @@ body {
     height: 28px;
     border-radius: 4px;
 }
+
+.bg-inspection_required {
+    background-color: rgba(255, 193, 7, 1) !important;
+}
+
+.bg-inspection_ongoing {
+    background-color: rgba(13, 110, 253, 1) !important;
+}
+
+.bg-approved {
+    background-color: rgb(37, 110, 37) !important;
+}
+
+.bg-rejected {
+    background-color: rgb(236, 33, 64) !important;
+}

@@ -9,8 +9,9 @@ ARG user
 ARG uid
 
 # Install some packages we need using Alpine Linux package management
-RUN apk add --update \
-    make
+RUN apk update && apk add --no-cache \
+    make \
+    ca-certificates
 
 # Install PHP extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql

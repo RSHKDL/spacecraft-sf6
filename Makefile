@@ -90,7 +90,7 @@ test: ## Execute the test suite
 	$(COMPOSE) exec php bin/phpunit --testdox
 
 test-watch: ## Execute the test suite in watch mode
-	$(COMPOSE) exec php vendor/bin/phpunit-watcher watch
+	$(COMPOSE) exec php vendor/bin/phpunit-watcher watch --testdox
 
 .PHONY: test test-watch
 

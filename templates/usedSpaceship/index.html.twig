@@ -16,13 +16,26 @@
             </thead>
             <tbody>
             {% for spaceship in usedSpaceships %}
-                <tr>
+                <tr {{ stimulus_controller('used-spaceship-report', {url: path('app_used_spaceship_report', {'spaceshipName': spaceship.slug})}) }}>
                     <th scope="row">{{ spaceship.hullNumber }}</th>
                     <td>{{ spaceship.name }}</td>
                     {% set variant = spaceship.class.variant %}
                     <td>{{ spaceship.class.name }} {% if variant %}({{ variant }}){% endif %}</td>
-                    <td>todo</td>
-                    <td>todo</td>
+                    <td>
+{#                        <span class="badge bg-warning">Todo</span>#}
+                        {% include 'usedSpaceship/_status.html.twig' with { 'spaceship': spaceship } %}
+                    </td>
+                    <td>
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            data-action="used-spaceship-report#ask"
+                        >
+                            Ask report
+                        </button>
+                        <button class="btn btn-sm btn-secondary">Sell</button>
+                        <button class="btn btn-sm btn-secondary">Sell for parts</button>
+                        <button class="btn btn-sm btn-secondary">Schedule to scrap</button>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

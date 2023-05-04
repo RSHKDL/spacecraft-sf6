@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Spaceship: All options{% endblock %}
+{% block title %}Spaceship: All components{% endblock %}
 
 {% block body %}
     <div class="container mt-3">
         <header class="row">
-            <h2>All Spaceship Options</h2>
+            <h2>All {{ totalComponents }} Spaceship Components</h2>
         </header>
         <section class="row">
             <table class="table">
@@ -20,10 +20,15 @@
                 </thead>
                 <tbody>
                     {% for option in options %}
-                        {% include 'spaceshipOptions/_row.html.twig' %}
+                        {{ include('spaceshipOptions/_row.html.twig') }}
                     {% endfor %}
                 </tbody>
             </table>
+            {{ include(
+                'spaceshipOptions/_pagination.html.twig',
+                {'total': totalPage, 'current': currentPage},
+                with_context = false
+            ) }}
         </section>
     </div>
 {% endblock %}

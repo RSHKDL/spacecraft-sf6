@@ -4,6 +4,9 @@ namespace App\Repository;
 
 use App\Entity\BaseOption;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Query;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -33,5 +36,23 @@ class BaseOptionRepository extends ServiceEntityRepository
         $qb->setParameter('class_metadata', $this->_em->getClassMetadata($class));
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findAllPaginated(int $currentPage = 1, int $limit = 25): Paginator
+    {
+        $qb = $this->createQueryBuilder('base_option');
+
+        return $this->paginate($qb, $currentPage, $limit);
+    }
+
+    private function paginate(QueryBuilder $queryBuilder, int $page, int $limit): Paginator
+    {
+        $paginator = new Paginator($queryBuilder);
+
+        $paginator->getQuery()
+            ->setFirstResult($limit * ($page - 1))
+            ->setMaxResults($limit);
+
+        return $paginator;
     }
 }

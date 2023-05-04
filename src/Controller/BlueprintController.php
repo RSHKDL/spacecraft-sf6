@@ -61,6 +61,7 @@ class BlueprintController extends AbstractController
 
         return $newCollection;
     }
+
     private function transformBlueprint(Blueprint $blueprint): array
     {
         return [

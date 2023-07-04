@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_option_power_supply')]
-class PowerSupply extends BaseOption
+class PowerSupply extends BaseComponent
 {
     public const TYPE_POWER_SUPPLY = 'power supply';
     public const SUBTYPE_REACTOR = 'reactor';

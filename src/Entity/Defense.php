@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'app_option_defense')]
-class Defense extends BaseOption
+class Defense extends BaseComponent
 {
     public const TYPE_DEFENSE = 'defense';
     public const SUBTYPE_SHIELD = 'shield';

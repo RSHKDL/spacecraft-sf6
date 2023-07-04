@@ -2,26 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\BaseOption;
+use App\Entity\BaseComponent;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<BaseOption>
+ * @extends ServiceEntityRepository<BaseComponent>
  *
- * @method BaseOption|null find($id, $lockMode = null, $lockVersion = null)
- * @method BaseOption|null findOneBy(array $criteria, array $orderBy = null)
- * @method BaseOption[]    findAll()
- * @method BaseOption[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method BaseComponent|null find($id, $lockMode = null, $lockVersion = null)
+ * @method BaseComponent|null findOneBy(array $criteria, array $orderBy = null)
+ * @method BaseComponent[]    findAll()
+ * @method BaseComponent[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BaseOptionRepository extends ServiceEntityRepository
+class BaseComponentRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, BaseOption::class);
+        parent::__construct($registry, BaseComponent::class);
     }
 
     /**

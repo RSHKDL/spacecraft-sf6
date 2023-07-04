@@ -2,7 +2,7 @@
 
 namespace App\Spaceship;
 
-interface OptionInterface
+interface ComponentInterface
 {
     public function getType(): string;
     public function getSubtype(): string;

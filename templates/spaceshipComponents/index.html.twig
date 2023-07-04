@@ -20,12 +20,12 @@
                 </thead>
                 <tbody>
                     {% for option in options %}
-                        {{ include('spaceshipOptions/_row.html.twig') }}
+                        {{ include('spaceshipComponents/_row.html.twig') }}
                     {% endfor %}
                 </tbody>
             </table>
             {{ include(
-                'spaceshipOptions/_pagination.html.twig',
+                'spaceshipComponents/_pagination.html.twig',
                 {'total': totalPage, 'current': currentPage},
                 with_context = false
             ) }}

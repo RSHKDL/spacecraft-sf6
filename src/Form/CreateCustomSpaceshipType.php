@@ -6,8 +6,8 @@ use App\Entity\Defense;
 use App\Entity\Manufacturer;
 use App\Entity\PowerSupply;
 use App\Model\CustomSpaceship;
-use App\Repository\BaseOptionRepository;
-use App\Spaceship\OptionInterface;
+use App\Repository\BaseComponentRepository;
+use App\Spaceship\ComponentInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,7 +26,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CreateCustomSpaceshipType extends AbstractType
 {
     public function __construct(
-        private readonly BaseOptionRepository $optionRepository
+        private readonly BaseComponentRepository $optionRepository
     ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -70,7 +70,7 @@ class CreateCustomSpaceshipType extends AbstractType
                 'choices' => $this->optionRepository->findByClass(PowerSupply::class),
                 'placeholder' => 'Choose the power supply',
                 'choice_value' => 'name',
-                'choice_label' => fn (OptionInterface $option) => $option->getName(),
+                'choice_label' => fn (ComponentInterface $option) => $option->getName(),
                 'label' => false,
                 'multiple' => true,
             ])
@@ -78,7 +78,7 @@ class CreateCustomSpaceshipType extends AbstractType
                 'choices' => $this->optionRepository->findByClass(Defense::class),
                 'placeholder' => 'Choose a defense',
                 'choice_value' => 'name',
-                'choice_label' => fn (OptionInterface $option) => $option->getName(),
+                'choice_label' => fn (ComponentInterface $option) => $option->getName(),
                 'label' => false,
                 'multiple' => true,
             ])

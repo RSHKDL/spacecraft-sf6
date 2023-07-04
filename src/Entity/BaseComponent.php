@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Spaceship\OptionInterface;
+use App\Spaceship\ComponentInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
     'power_supply' => PowerSupply::class,
     'defense' => Defense::class,
 ])]
-class BaseOption implements OptionInterface
+class BaseComponent implements ComponentInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

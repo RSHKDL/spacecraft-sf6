@@ -1,25 +1,27 @@
+{% if total > 1 %}
 <nav aria-label="...">
     <ul class="pagination">
         <li class="page-item{{ current is same as 1 ? ' disabled' }}">
             <a
                 class="page-link"
-                href="{{ path('app_options_list', { page: current - 1 < 1 ? 1 : current - 1 }) }}"
+                href="{{ path('app_component_index', { page: current - 1 < 1 ? 1 : current - 1 }) }}"
             >
                 Previous
             </a>
         </li>
         {% for i in 1..total %}
             <li class="page-item{{ current is same as i ? ' active' }}" aria-current="page">
-                <a class="page-link" href="{{ path('app_options_list', { page: i }) }}">{{ i }}</a>
+                <a class="page-link" href="{{ path('app_component_index', { page: i }) }}">{{ i }}</a>
             </li>
         {% endfor %}
         <li class="page-item{{ current is same as total ? ' disabled' }}">
             <a
                 class="page-link"
-                href="{{ path('app_options_list', { page: current + 1 <= total ? current + 1 : total }) }}"
+                href="{{ path('app_component_index', { page: current + 1 <= total ? current + 1 : total }) }}"
             >
                 Next
             </a>
         </li>
     </ul>
 </nav>
+{% endif %}

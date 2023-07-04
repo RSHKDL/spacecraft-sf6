@@ -4,7 +4,7 @@ namespace App\Spaceship\Model;
 
 use App\Entity\SpaceshipClass;
 use App\Spaceship\Enum\ConformityInspectionStatus;
-use App\Spaceship\OptionInterface;
+use App\Spaceship\ComponentInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -52,21 +52,21 @@ final class UsedSpaceshipModel
     }
 
     /**
-     * @return Collection<int, OptionInterface>
+     * @return Collection<int, ComponentInterface>
      */
     public function getSpaceshipComponent(): Collection
     {
         return $this->spaceshipComponents;
     }
 
-    public function addSpaceshipComponent(OptionInterface $option): void
+    public function addSpaceshipComponent(ComponentInterface $option): void
     {
         if (!$this->spaceshipComponents->contains($option)) {
             $this->spaceshipComponents[] = $option;
         }
     }
 
-    public function removeSpaceshipComponent(OptionInterface $option): void
+    public function removeSpaceshipComponent(ComponentInterface $option): void
     {
         $this->spaceshipComponents->removeElement($option);
     }

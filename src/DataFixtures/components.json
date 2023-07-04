@@ -1,0 +1,60 @@
+{
+  "powerSupply":[
+    {
+      "type": "reactor",
+      "name": "Fusion Reactor",
+      "power": 5000,
+      "manufacturer": "Tai-Yong Aerospace"
+    },
+    {
+      "type": "reactor",
+      "name": "Fusion Reactor",
+      "power": 5500,
+      "manufacturer": "Weyland-Yutani Corporation"
+    },
+    {
+      "type": "reactor",
+      "name": "Cold Fusion Reactor",
+      "power": 15000,
+      "manufacturer": "Tai-Yong Aerospace"
+    },
+    {
+      "type": "supercapacitor",
+      "name": "Cobalt Based",
+      "storage": 200000,
+      "manufacturer": "Tai-Yong Aerospace"
+    },
+    {
+      "type": "supercapacitor",
+      "name": "Double Layer",
+      "storage": 150000,
+      "manufacturer": "Cyberdyne Systems"
+    }
+  ],
+  "defense": [
+    {
+      "type": "armor",
+      "name": "Test Armor A",
+      "defense": 50,
+      "manufacturer": "Blackrock Ltd"
+    },
+    {
+      "type": "armor",
+      "name": "Nanocomposite",
+      "defense": 70,
+      "manufacturer": "Blackrock Ltd"
+    },
+    {
+      "type": "shield",
+      "name": "Ceramo-metal",
+      "defense": 50,
+      "manufacturer": "Kennedy-McNamara"
+    },
+    {
+      "type": "shield",
+      "name": "Test Shield B",
+      "defense": 100,
+      "manufacturer": "Yukon Corporation"
+    }
+  ]
+}

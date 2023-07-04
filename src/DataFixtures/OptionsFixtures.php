@@ -22,7 +22,7 @@ class OptionsFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         try {
-            $options = $this->loadData("options");
+            $options = $this->loadData('components');
             foreach ($options as $key => $mainOption) {
                 foreach ($mainOption as $optionData) {
                     switch ($key) {

@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SpaceshipRepository;
 use App\Spaceship\Enum\ConformityInspectionStatus;
-use App\Spaceship\OptionInterface;
+use App\Spaceship\ComponentInterface;
 use App\Spaceship\SpaceshipInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -33,7 +33,7 @@ class Spaceship implements SpaceshipInterface
     #[ORM\JoinTable(name: 'app_spaceships_options')]
     #[ORM\JoinColumn(name: 'spaceship_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'option_id', referencedColumnName: 'id')]
-    #[ORM\ManyToMany(targetEntity: BaseOption::class, inversedBy: 'spaceships')]
+    #[ORM\ManyToMany(targetEntity: BaseComponent::class, inversedBy: 'spaceships')]
     private Collection $options;
 
     private ConformityInspectionStatus $conformityInspectionStatus = ConformityInspectionStatus::INSPECTION_REQUIRED;
@@ -104,21 +104,21 @@ class Spaceship implements SpaceshipInterface
     }
 
     /**
-     * @return Collection<int, OptionInterface>
+     * @return Collection<int, ComponentInterface>
      */
     public function getOptions(): Collection
     {
         return $this->options;
     }
 
-    public function addOption(OptionInterface $option): void
+    public function addOption(ComponentInterface $option): void
     {
         if (!$this->options->contains($option)) {
             $this->options[] = $option;
         }
     }
 
-    public function removeOption(OptionInterface $option): void
+    public function removeOption(ComponentInterface $option): void
     {
         $this->options->removeElement($option);
     }

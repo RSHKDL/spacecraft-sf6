@@ -1,9 +1,22 @@
 [
   {
     "name": "Corvette",
-    "variants": [
-      "stealth"
-    ]
+    "hull": 300,
+    "speed": 160,
+    "evasion": 60,
+    "slots": {
+      "weapons": 3,
+      "utilities": {
+        "small": 3,
+        "auxiliaries": 1
+      }
+    },
+    "variants": {
+      "stealth": {
+        "name": "stealth",
+        "utilities": ""
+      }
+    }
   },
   {
     "name": "Frigate",

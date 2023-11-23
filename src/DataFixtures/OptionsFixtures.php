@@ -40,7 +40,9 @@ class OptionsFixtures extends Fixture implements DependentFixtureInterface
                     }
 
                     $option->setManufacturer($this->getReference($optionData['manufacturer']));
-                    $this->addReference($option->getName(), $option);
+                    if (!$this->hasReference($option->getName())) {
+                        $this->addReference($option->getName(), $option);
+                    }
                     $manager->persist($option);
                 }
             }

@@ -34,27 +34,37 @@
   "defense": [
     {
       "type": "armor",
-      "name": "Test Armor A",
+      "name": "Nanocomposite",
       "defense": 50,
       "manufacturer": "Blackrock Ltd"
     },
     {
       "type": "armor",
-      "name": "Nanocomposite",
-      "defense": 70,
+      "name": "Ceramo-metal",
+      "defense": 100,
       "manufacturer": "Blackrock Ltd"
     },
     {
-      "type": "shield",
-      "name": "Ceramo-metal",
+      "type": "armor",
+      "name": "Nanocomposite",
       "defense": 50,
-      "manufacturer": "Kennedy-McNamara"
+      "manufacturer": "Kennedy-McNamara LLC"
     },
     {
       "type": "shield",
-      "name": "Test Shield B",
-      "defense": 100,
-      "manufacturer": "Yukon Corporation"
+      "name": "Deflectors",
+      "power": 15,
+      "regen": 0.5,
+      "defense": 75,
+      "manufacturer": "Kennedy-McNamara LLC"
+    },
+    {
+      "type": "shield",
+      "name": "Deflectors",
+      "power": 15,
+      "regen": 0.5,
+      "defense": 75,
+      "manufacturer": "Tai-Yong Aerospace"
     }
   ]
 }

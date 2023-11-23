@@ -21,6 +21,14 @@ class BlueprintController extends AbstractController
     #[Route('/blueprint/create', name: 'app_blueprint_create')]
     public function create(Request $request, BlueprintRepository $repository): Response
     {
+        // todo Opquast rule 84
+        return $this->render('blueprint/stepIntro.html.twig');
+    }
+
+    #[Route('/blueprint/step/hull', name: 'app_blueprint_step_hull')]
+    public function selectHull(Request $request, BlueprintRepository $repository): Response
+    {
+         // todo refacto Blueprint to Hull and use Blueprint as an order
         $form = $this->createForm(CreateBlueprintType::class);
         $blueprints = $repository->findAll();
 
@@ -34,15 +42,20 @@ class BlueprintController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // todo : handle form submission
-            dd($form->getData());
+            $blueprint = $form->getData();
+            return $this->redirectToRoute('app_blueprint_step_components');
         }
 
-        return $this->render('blueprint/create.html.twig', [
+        return $this->render('blueprint/stepHull.html.twig', [
             'form' => $form->createView(),
             'blueprints' => $blueprintsAsJson,
-            'blueprintsDebug' => $blueprintsAsJsonDebug
         ]);
+    }
+
+    #[Route('/blueprint/step/components', name: 'app_blueprint_step_components')]
+    public function selectComponents(): Response
+    {
+        return $this->render('blueprint/stepComponents.html.twig');
     }
 
     #[Route('blueprint/create/classification-select', name: 'xhr_blueprint_classification_select')]

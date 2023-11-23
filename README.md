@@ -8,7 +8,7 @@
 - PHP 8.1
 - NGINX
 - MySQL 8
-- Symfony 6.1
+- Symfony 6.4
 
 The images are build upon [Alpine Linux](https://www.alpinelinux.org/). If you want to update the Dockerfiles,
 you need to refer to the Alpine Linux documentation.

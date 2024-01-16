@@ -11,6 +11,7 @@ ARG uid
 # Install some packages we need using Alpine Linux package management
 RUN apk update && apk add --no-cache \
     make \
+    git \
     ca-certificates
 
 # Install PHP extensions

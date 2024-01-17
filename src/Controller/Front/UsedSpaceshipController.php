@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Spaceship\Factory\UsedSpaceshipFactory;
 use App\Spaceship\GithubService;
@@ -16,7 +16,7 @@ class UsedSpaceshipController extends AbstractController
         private readonly GithubService $githubService
     ) {}
 
-    #[Route('/spaceship/used', name: 'app_used_spaceship_index')]
+    #[Route('/spaceship/used', name: 'used_spaceship_index')]
     public function index(): Response
     {
         return $this->render('usedSpaceship/index.html.twig', [
@@ -24,7 +24,7 @@ class UsedSpaceshipController extends AbstractController
         ]);
     }
 
-    #[Route('/spaceship/used/report/{spaceshipName}', name: 'app_used_spaceship_report')]
+    #[Route('/spaceship/used/report/{spaceshipName}', name: 'used_spaceship_report')]
     public function askReport(string $spaceshipName): JsonResponse
     {
         $spaceshipName = ucfirst($spaceshipName);

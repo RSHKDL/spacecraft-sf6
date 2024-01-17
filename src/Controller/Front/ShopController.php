@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\Manufacturer;
 use App\Form\CreateCustomSpaceshipType;
@@ -16,7 +16,7 @@ class ShopController extends AbstractController
         private readonly ManufacturerRepository $manufacturerRepository,
     ) {}
 
-    #[Route('shop', name: 'app_shop_list')]
+    #[Route('shop', name: 'shop_list')]
     public function index(Request $request): Response
     {
         $searchTerm = $request->query->get('q');
@@ -36,7 +36,7 @@ class ShopController extends AbstractController
         );
     }
 
-    #[Route('shop/{slug}', name: 'app_shop_show')]
+    #[Route('shop/{slug}', name: 'shop_show')]
     public function show(Manufacturer $manufacturer, Request $request): Response
     {
         $form = $this->createForm(CreateCustomSpaceshipType::class);
@@ -50,7 +50,7 @@ class ShopController extends AbstractController
         return $this->render(
             'shop/show.html.twig', [
                 'manufacturer' => $manufacturer,
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ]
         );
     }

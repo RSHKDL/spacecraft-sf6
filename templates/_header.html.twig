@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('app_shop_list') }}">Shiiips</a>
+        <a class="navbar-brand" href="{{ path('app_home') }}">SpaceCraft</a>
         <button
             class="navbar-toggler"
             type="button"
@@ -14,13 +14,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav me-auto">
-                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Home</a>
-                <a class="nav-link" href="{{ path('app_shop_list') }}">Shop</a>
-                <a class="nav-link" href="{{ path('app_spaceship_create') }}">Create your spaceship</a>
-                <a class="nav-link" href="{{ path('app_blueprint_create') }}">Create a blueprint</a>
-                <a class="nav-link" href="{{ path('app_component_index') }}">All Components</a>
+                <a class="nav-link active" aria-current="page" href="{{ path('app_shop_list') }}">Shop</a>
+                <a class="nav-link" href="{{ path('app_shop_list') }}">Manufacturers</a>
+                <a class="nav-link" href="{{ path('app_component_index') }}">Components</a>
             </div>
             <div class="navbar-nav">
+                <a class="nav-link" href="{{ path('app_blueprint_create') }}">Blueprints</a>
                 <a class="nav-link" href="{{ path('app_shop_list') }}">Cart</a>
             </div>
         </div>

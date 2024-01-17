@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\Blueprint;
 use App\Form\CreateBlueprintType;
@@ -18,14 +18,14 @@ class BlueprintController extends AbstractController
         private readonly SerializerInterface $serializer
     ) {}
 
-    #[Route('/blueprint/create', name: 'app_blueprint_create')]
+    #[Route('/blueprint/create', name: 'blueprint_create')]
     public function create(Request $request, BlueprintRepository $repository): Response
     {
         // todo Opquast rule 84
         return $this->render('blueprint/stepIntro.html.twig');
     }
 
-    #[Route('/blueprint/step/hull', name: 'app_blueprint_step_hull')]
+    #[Route('/blueprint/step/hull', name: 'blueprint_step_hull')]
     public function selectHull(Request $request, BlueprintRepository $repository): Response
     {
          // todo refacto Blueprint to Hull and use Blueprint as an order
@@ -52,13 +52,13 @@ class BlueprintController extends AbstractController
         ]);
     }
 
-    #[Route('/blueprint/step/components', name: 'app_blueprint_step_components')]
+    #[Route('/blueprint/step/components', name: 'blueprint_step_components')]
     public function selectComponents(): Response
     {
         return $this->render('blueprint/stepComponents.html.twig');
     }
 
-    #[Route('blueprint/create/classification-select', name: 'xhr_blueprint_classification_select')]
+    #[Route('blueprint/create/classification-select', name: 'blueprint_classification_select_xhr')]
     public function getDependentClassificationSelect(Request $request)
     {
         // get manufacturer selected

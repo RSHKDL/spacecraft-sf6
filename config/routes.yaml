@@ -1,5 +1,27 @@
-controllers:
+front_controllers:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../src/Controller/Front
+        namespace: App\Controller\Front
     type: attribute
+    name_prefix: 'app_'
+    host: '{subdomain}%root_domain%'
+    defaults:
+        subdomain: 'www.'
+    requirements:
+        subdomain: 'www.|'
+
+admin_controllers:
+    resource:
+        path: ../src/Controller/Admin/
+        namespace: App\Controller\Admin
+    type: attribute
+    name_prefix: 'admin_'
+    host: 'admin.%root_domain%'
+
+api_controllers:
+    resource:
+        path: ../src/Controller/Api/
+        namespace: App\Controller\Api
+    type: attribute
+    name_prefix: 'api_'
+    host: 'api.%root_domain%'

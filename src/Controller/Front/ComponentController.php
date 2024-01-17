@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Repository\BaseComponentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,7 +11,7 @@ class ComponentController extends AbstractController
 {
     private const COMPONENTS_PER_PAGE = 10;
 
-    #[Route('/spaceship/components/{page}', name: 'app_component_index')]
+    #[Route('/spaceship/components/{page}', name: 'component_index')]
     public function index(BaseComponentRepository $optionRepository, int $page = 1): Response
     {
         $paginatedComponents = $optionRepository->findAllPaginated($page, self::COMPONENTS_PER_PAGE);

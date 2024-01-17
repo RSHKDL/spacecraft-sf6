@@ -12,4 +12,6 @@ import './styles/app.css';
 import './bootstrap';
 import './js/formCollection';
 
+require('bootstrap')
+
 console.log('alive!')

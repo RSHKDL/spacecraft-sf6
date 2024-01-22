@@ -2,14 +2,15 @@
 
 namespace App\Controller\Admin;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class DashboardController
+class DashboardController extends AbstractController
 {
     #[Route('/', name: 'dashboard')]
     public function dashboard(): Response
     {
-        return new Response('Todo: setup admin templates!');
+        return $this->render('admin/dashboard/index.html.twig');
     }
 }

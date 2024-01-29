@@ -38,4 +38,21 @@ class OrderRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findOrdersAvailableForTracking(): array
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->leftJoin('o.status', 's_delivered', 'WITH', 's_delivered.code = :delivered')
+            ->leftJoin('o.status', 's_paid', 'WITH', 's_paid.code = :paid')
+            ->leftJoin('o.status', 's_shipped', 'WITH', 's_shipped.code = :shipped')
+            ->andWhere('s_delivered.code IS NULL') // Orders not yet delivered
+            ->andWhere('(s_paid.code = :paid OR s_shipped.code = :shipped)') // Either paid or shipped
+            ->setParameters([
+                'delivered' => 'delivered',
+                'paid' => 'paid',
+                'shipped' => 'shipped',
+            ]);
+
+        return $qb->getQuery()->getResult();
+    }
 }

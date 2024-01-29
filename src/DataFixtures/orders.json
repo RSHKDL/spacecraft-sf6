@@ -1,0 +1,28 @@
+{
+  "order_1": {
+    "status": [
+      {"code":  "cart", "date": "20-01-2024"}
+    ]
+  },
+  "order_2": {
+    "status": [
+      {"code":  "cart", "date": "20-01-2024"},
+      {"code":  "paid", "date": "21-01-2024"}
+    ]
+  },
+  "order_3": {
+    "status": [
+      {"code":  "cart", "date": "20-01-2024"},
+      {"code":  "paid", "date": "20-01-2024"},
+      {"code":  "shipped", "date": "22-01-2024"}
+    ]
+  },
+  "order_4": {
+    "status": [
+      {"code":  "cart", "date": "19-01-2024"},
+      {"code":  "paid", "date": "19-01-2024"},
+      {"code":  "shipped", "date": "20-01-2024"},
+      {"code":  "delivered", "date": "22-01-2024"}
+    ]
+  }
+}

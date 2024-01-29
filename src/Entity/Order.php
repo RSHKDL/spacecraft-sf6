@@ -16,30 +16,21 @@ class Order
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private string $status;
-
     #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderItem::class)]
     private Collection $orderItem;
+
+    #[ORM\OneToMany(mappedBy: 'order', targetEntity: OrderStatus::class, cascade: ['persist'])]
+    private Collection $status;
 
     public function __construct()
     {
         $this->orderItem = new ArrayCollection();
+        $this->status = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): void
-    {
-        $this->status = $status;
     }
 
     /**
@@ -66,6 +57,36 @@ class Order
             // set the owning side to null (unless already changed)
             if ($orderItem->getOrder() === $this) {
                 $orderItem->setOrder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderStatus>
+     */
+    public function getStatus(): Collection
+    {
+        return $this->status;
+    }
+
+    public function addStatus(OrderStatus $status): static
+    {
+        if (!$this->status->contains($status)) {
+            $this->status->add($status);
+            $status->setOrder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatus(OrderStatus $status): static
+    {
+        if ($this->status->removeElement($status)) {
+            // set the owning side to null (unless already changed)
+            if ($status->getOrder() === $this) {
+                $status->setOrder(null);
             }
         }
 

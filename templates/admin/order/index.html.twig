@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Orders{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <section>
+            <h2>Last orders</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <th scope="row">{{ order.id }}</th>
+                        <td>
+                            <ul>
+                            {% for status in order.status %}
+                                <li>{{ status.code }} <small>{{ status.date|date('d/m/y') }}</small></li>
+                            {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="">No orders</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <div class="mt-3">
+            <h2>Orders available for tracking (paid or shipped but not delivered)</h2>
+            <ul>
+                {% for order in ordersAvailableForTracking %}
+                    <li>order number #{{ order.id }}</li>
+                {% else %}
+                    <p>No results</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -11,12 +11,9 @@
         "auxiliaries": 1
       }
     },
-    "variants": {
-      "stealth": {
-        "name": "stealth",
-        "utilities": ""
-      }
-    }
+    "variants": [
+      "stealth"
+    ]
   },
   {
     "name": "Frigate",

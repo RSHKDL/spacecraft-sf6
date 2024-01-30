@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
 
-class LoginFormAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
+class AdminLoginFormAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
 {
     public function __construct(
         private readonly RouterInterface $router
@@ -27,7 +27,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
     public function supports(Request $request): ?bool
     {
         return (
-            $request->getHost() !== 'admin.dev.spacecraft.com'
+            $request->getHost() === 'admin.dev.spacecraft.com'
             && $request->getPathInfo() === '/login'
             && $request->isMethod('POST')
         );
@@ -52,7 +52,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         return new RedirectResponse(
-            $this->router->generate('app_home')
+            $this->router->generate('admin_dashboard')
         );
     }
 
@@ -61,7 +61,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
         $request->getSession()->set(SecurityRequestAttributes::AUTHENTICATION_ERROR, $exception);
 
         return new RedirectResponse(
-            $this->router->generate('app_login')
+            $this->router->generate('admin_login')
         );
     }
 
@@ -71,7 +71,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
     public function start(Request $request, AuthenticationException $authException = null): Response
     {
         return new RedirectResponse(
-            $this->router->generate('app_login')
+            $this->router->generate('admin_login')
         );
     }
 }

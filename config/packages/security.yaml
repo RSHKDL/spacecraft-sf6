@@ -16,11 +16,27 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            host: ^admin\.dev\.spacecraft\.com$
+            lazy: true
+            provider: app_user_provider
+            custom_authenticator: App\Security\AdminLoginFormAuthenticator
+            entry_point: App\Security\AdminLoginFormAuthenticator
+            logout: true
+            remember_me:
+                secret: '%kernel.secret%'
+                always_remember_me: true
+                signature_properties: [password]
         main:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\LoginFormAuthenticator
+            entry_point: App\Security\LoginFormAuthenticator
             logout: true
+            remember_me:
+                secret: '%kernel.secret%'
+                always_remember_me: true
+                signature_properties: [ password ]
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -28,11 +44,15 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS, host: admin.dev.spacecraft.com }
+        - { path: ^/, roles: ROLE_ADMIN, host: admin.dev.spacecraft.com }
+        #- { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:

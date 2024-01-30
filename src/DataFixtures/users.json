@@ -1,0 +1,23 @@
+[
+  {
+    "email": "boba.fett@empire.com",
+    "password": "engage",
+    "firstName": "Boba",
+    "lastName": "Fett",
+    "role": "user"
+  },
+  {
+    "email": "james.holden@roccinante.com",
+    "password": "engage",
+    "firstName": "James",
+    "lastName": "Holden",
+    "role": "user"
+  },
+  {
+    "email": "admin@starcraft.com",
+    "password": "engage",
+    "firstName": "John",
+    "lastName": "Smith",
+    "role": "admin"
+  }
+]

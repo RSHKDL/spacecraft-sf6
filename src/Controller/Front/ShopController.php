@@ -19,26 +19,6 @@ class ShopController extends AbstractController
     #[Route('shop', name: 'shop_list')]
     public function index(Request $request): Response
     {
-        $searchTerm = $request->query->get('q');
-        $manufacturers = $this->manufacturerRepository->search($searchTerm);
-
-        if ($request->query->get('preview')) {
-            return $this->render('shop/_searchPreview.html.twig', [
-                'manufacturers' => $manufacturers,
-            ]);
-        }
-
-        return $this->render(
-            'shop/index.html.twig', [
-                'manufacturers' => $manufacturers,
-                'searchTerm' => $searchTerm,
-            ]
-        );
-    }
-
-    #[Route('shop/{slug}', name: 'shop_show')]
-    public function show(Manufacturer $manufacturer, Request $request): Response
-    {
         $form = $this->createForm(CreateCustomSpaceshipType::class);
 
         $form->handleRequest($request);
@@ -48,8 +28,7 @@ class ShopController extends AbstractController
         }
 
         return $this->render(
-            'shop/show.html.twig', [
-                'manufacturer' => $manufacturer,
+            'shop/index.html.twig', [
                 'form' => $form->createView(),
             ]
         );

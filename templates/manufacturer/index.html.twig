@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our Shop : All manufacturer{% endblock %}
+
+{% block body %}
+    <div class="container mt-3">
+        <header class="row">
+            {{ include('manufacturer/_search.html.twig') }}
+            <h2>All Manufacturers</h2>
+        </header>
+        <section class="row">
+            <ul class="list-unstyled">
+                {% for manufacturer in manufacturers %}
+                    <li>
+                        <a href="{{ path('app_manufacturer_show', {slug: manufacturer.slug}) }}">{{ manufacturer.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+{% endblock %}

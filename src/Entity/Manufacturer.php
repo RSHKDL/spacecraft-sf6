@@ -22,6 +22,9 @@ class Manufacturer
     #[Gedmo\Slug(fields: ['name'])]
     private string $slug;
 
+    #[ORM\OneToOne(mappedBy: 'manufacturer', cascade: ['persist', 'remove'])]
+    private ?ManufacturerStatistics $statistics = null;
+
     public function __construct(string $name)
     {
         $this->name = $name;
@@ -40,5 +43,22 @@ class Manufacturer
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+
+    public function getStatistics(): ?ManufacturerStatistics
+    {
+        return $this->statistics;
+    }
+
+    public function setStatistics(ManufacturerStatistics $statistics): static
+    {
+        // set the owning side of the relation if necessary
+        if ($statistics->getManufacturer() !== $this) {
+            $statistics->setManufacturer($this);
+        }
+
+        $this->statistics = $statistics;
+
+        return $this;
     }
 }

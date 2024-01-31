@@ -7,6 +7,7 @@ use App\Entity\Manufacturer;
 use App\Entity\PowerSupply;
 use App\Model\CustomSpaceship;
 use App\Repository\BaseComponentRepository;
+use App\Repository\ManufacturerRepository;
 use App\Spaceship\ComponentInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -26,7 +27,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CreateCustomSpaceshipType extends AbstractType
 {
     public function __construct(
-        private readonly BaseComponentRepository $optionRepository
+        private readonly BaseComponentRepository $optionRepository,
+        private readonly ManufacturerRepository $manufacturerRepository,
     ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -38,6 +40,7 @@ class CreateCustomSpaceshipType extends AbstractType
             ])*/
             ->add('manufacturer', EntityType::class, [
                 'class' => Manufacturer::class,
+                'query_builder' => $this->manufacturerRepository->selectableManufacturersQueryBuilder(),
                 'choice_label' => 'name',
                 'placeholder' => 'Choose the manufacturer',
                 'label' => false,

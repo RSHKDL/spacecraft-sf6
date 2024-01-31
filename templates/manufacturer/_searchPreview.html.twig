@@ -2,7 +2,7 @@
     {% for manufacturer in manufacturers %}
         <a
             class="list-group-item list-group-item-action"
-            href="{{ path('app_shop_show', {slug: manufacturer.slug}) }}"
+            href="{{ path('app_manufacturer_show', {slug: manufacturer.slug}) }}"
         >
             {{ manufacturer.name }}
         </a>

@@ -1,0 +1,49 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Manufacturers{% endblock %}
+
+{% block layout %}
+    <section>
+        <h2>Manufacturers</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Ship designs</th>
+                <th scope="col">Ongoing orders</th>
+                <th scope="col">Average Lead Time</th>
+                <th scope="col">Customer satisfaction threshold</th>
+                <th scope="col">Ranking</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for manufacturer in manufacturers %}
+                <tr>
+                    <th scope="row">{{ manufacturer.name }}</th>
+                    <td><a href="#">Designs ({{ random(50, 100) }})</a></td>
+                    <td>{{ manufacturer.statistics.ongoingOrders }}</td>
+                    <td>{{ manufacturer.statistics.averageLeadTime }} days</td>
+                    <td>{{ _self.thresholdBadge(manufacturer.statistics.customerSatisfaction.value) }}</td>
+                    <td>-</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="">No manufacturers</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
+
+{% macro thresholdBadge(value) %}
+    {% set color = 'danger' %}
+    {% if value is same as 'expected_threshold' %}
+        {% set color = 'success' %}
+    {% elseif value is same as 'warning_value' %}
+        {% set color = 'warning' %}
+    {% endif %}
+    <span class="badge bg-{{ color }}">
+        {{ value }}
+    </span>
+{% endmacro thresholdBadge %}

@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
                 $user->setFirstName($userData['firstName']);
                 $user->setLastName($userData['lastName']);
                 if ('admin' === $userData['role']) {
-                    $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+                    $user->setRoles(['ROLE_ADMIN']);
                 }
 
                 $manager->persist($user);

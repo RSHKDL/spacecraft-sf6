@@ -20,7 +20,7 @@
             {% for manufacturer in manufacturers %}
                 <tr>
                     <th scope="row">{{ manufacturer.name }}</th>
-                    <td><a href="#">Designs ({{ random(50, 100) }})</a></td>
+                    <td><a href="#">{{ random(50, 100) }} designs</a></td>
                     <td>{{ manufacturer.statistics.ongoingOrders }}</td>
                     <td>{{ manufacturer.statistics.averageLeadTime }} days</td>
                     <td>{{ _self.thresholdBadge(manufacturer.statistics.customerSatisfaction.value) }}</td>
@@ -40,7 +40,7 @@
     {% set color = 'danger' %}
     {% if value is same as 'expected_threshold' %}
         {% set color = 'success' %}
-    {% elseif value is same as 'warning_value' %}
+    {% elseif value is same as 'warning_threshold' %}
         {% set color = 'warning' %}
     {% endif %}
     <span class="badge bg-{{ color }}">

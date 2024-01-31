@@ -1,1 +1,38 @@
-<p>Todo: admin login</p>
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Dashboard login{% endblock %}
+
+{% block body %}
+    <section class="container-fluid d-flex justify-content-center align-items-center vh-100">
+        <div class="row card border-light shadow-sm rounded-3" style="width: 480pt">
+            <div class="card-body">
+                <form method="post">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="{{ asset('brand/spacecraft.svg') }}" alt="Spacecraft Logo" height="60">
+                        <span class="h2 mb-0">Spacecraft Dashboard</span>
+                    </div>
+
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey }}</div>
+                    {% endif %}
+
+                    <div class="form-floating mb-4">
+                        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="your@email.com" />
+                        <label class="form-label" for="inputEmail">Email address</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" />
+                        <label class="form-label" for="inputPassword">Password</label>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <div class="d-flex justify-content-center mb-4">
+                        <button class="btn btn-dark" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -9,11 +9,15 @@ use App\Manufacturer\Enum\ManufacturerSatisfactionThreshold;
 class ManufacturerBuilder
 {
     private string $name;
+    private int $shipyards = 0;
+    private int $assemblyLines = 0;
     private ?ManufacturerStatistics $statistics = null;
 
     public function build(): Manufacturer
     {
         $manufacturer = new Manufacturer($this->name);
+        $manufacturer->setShipyards($this->shipyards);
+        $manufacturer->setAssemblyLines($this->assemblyLines);
         $manufacturer->setStatistics($this->statistics);
 
         return $manufacturer;
@@ -39,6 +43,14 @@ class ManufacturerBuilder
         $statistics->setUpdatedAt(new \DateTimeImmutable());
 
         $this->statistics = $statistics;
+
+        return $this;
+    }
+
+    public function withProductionCapacityOf(int $shipyards, int $assemblyLines): self
+    {
+        $this->shipyards = $shipyards;
+        $this->assemblyLines = $assemblyLines;
 
         return $this;
     }

@@ -10,6 +10,7 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Ship designs</th>
+                <th scope="col">Assembly lines</th>
                 <th scope="col">Ongoing orders</th>
                 <th scope="col">Average Lead Time</th>
                 <th scope="col">Customer satisfaction threshold</th>
@@ -21,6 +22,7 @@
                 <tr>
                     <th scope="row">{{ manufacturer.name }}</th>
                     <td><a href="#">{{ random(50, 100) }} designs</a></td>
+                    <td>{{ manufacturer.assemblyLines }}</td>
                     <td>{{ manufacturer.statistics.ongoingOrders }}</td>
                     <td>{{ manufacturer.statistics.averageLeadTime }} days</td>
                     <td>{{ _self.thresholdBadge(manufacturer.statistics.customerSatisfaction.value) }}</td>

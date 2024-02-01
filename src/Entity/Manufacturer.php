@@ -25,6 +25,12 @@ class Manufacturer
     #[ORM\OneToOne(mappedBy: 'manufacturer', cascade: ['persist', 'remove'])]
     private ?ManufacturerStatistics $statistics = null;
 
+    /**
+     * Not persisted yet, will be replaced by a ManufacturerShipyard collection.
+     */
+    private int $shipyards = 0;
+    private int $assemblyLines = 0;
+
     public function __construct(string $name)
     {
         $this->name = $name;
@@ -60,5 +66,25 @@ class Manufacturer
         $this->statistics = $statistics;
 
         return $this;
+    }
+
+    public function getShipyards(): int
+    {
+        return $this->shipyards;
+    }
+
+    public function setShipyards(int $shipyards): void
+    {
+        $this->shipyards = $shipyards;
+    }
+
+    public function getAssemblyLines(): int
+    {
+        return $this->assemblyLines;
+    }
+
+    public function setAssemblyLines(int $assemblyLines): void
+    {
+        $this->assemblyLines = $assemblyLines;
     }
 }

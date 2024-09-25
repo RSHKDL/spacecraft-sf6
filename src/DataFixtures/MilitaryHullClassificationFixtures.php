@@ -2,9 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Manufacturer;
-use App\Entity\SpaceshipClass;
-use App\Entity\SpaceshipRole;
+use App\Entity\MilitaryClassification;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -19,21 +17,19 @@ class MilitaryHullClassificationFixtures extends Fixture
             foreach ($data as $datum) {
                 if (isset($datum['variants'])) {
                     foreach ($datum['variants'] as $variant) {
-                        $spaceshipClass = new SpaceshipClass();
-                        $spaceshipClass->setName($datum['name']);
-                        $spaceshipClass->setAlias($datum['alias'] ?? null);
-                        $spaceshipClass->setVariant($variant);
-                        $manager->persist($spaceshipClass);
-                        $referenceName = $spaceshipClass->getName() . ' ' . $spaceshipClass->getVariant();
-                        $this->addReference($referenceName, $spaceshipClass);
+                        $militaryClassification = new MilitaryClassification($datum['name'], $variant);
+                        $militaryClassification->setAlias($datum['alias'] ?? null);
+
+                        $manager->persist($militaryClassification);
+                        $referenceName = $militaryClassification->getName() . ' ' . $militaryClassification->getVariant();
+                        $this->addReference($referenceName, $militaryClassification);
                     }
                 }
 
-                $spaceshipClass = new SpaceshipClass();
-                $spaceshipClass->setName($datum['name']);
-                $spaceshipClass->setAlias($datum['alias'] ?? null);
-                $manager->persist($spaceshipClass);
-                $this->addReference($spaceshipClass->getName(), $spaceshipClass);
+                $militaryClassification = new MilitaryClassification($datum['name']);
+                $militaryClassification->setAlias($datum['alias'] ?? null);
+                $manager->persist($militaryClassification);
+                $this->addReference($militaryClassification->getName(), $militaryClassification);
             }
             $manager->flush();
         } catch (\Throwable $throwable) {

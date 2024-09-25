@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\SpaceshipClass;
+use App\Entity\MilitaryClassification;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<SpaceshipClass>
+ * @extends ServiceEntityRepository<MilitaryClassification>
  *
- * @method SpaceshipClass|null find($id, $lockMode = null, $lockVersion = null)
- * @method SpaceshipClass|null findOneBy(array $criteria, array $orderBy = null)
- * @method SpaceshipClass[]    findAll()
- * @method SpaceshipClass[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method MilitaryClassification|null find($id, $lockMode = null, $lockVersion = null)
+ * @method MilitaryClassification|null findOneBy(array $criteria, array $orderBy = null)
+ * @method MilitaryClassification[]    findAll()
+ * @method MilitaryClassification[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SpaceshipClassRepository extends ServiceEntityRepository
+class MilitaryClassificationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, SpaceshipClass::class);
+        parent::__construct($registry, MilitaryClassification::class);
     }
 
-    public function add(SpaceshipClass $entity, bool $flush = false): void
+    public function add(MilitaryClassification $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class SpaceshipClassRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(SpaceshipClass $entity, bool $flush = false): void
+    public function remove(MilitaryClassification $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

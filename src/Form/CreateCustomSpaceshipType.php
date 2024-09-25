@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * suivant (avec la liste complète des vaisseaux en data-attribute, par exemple) soit on permet de créer un vaisseau
  * avec l'ensemble des combinatoires possibles (moins quelques dépendances, exemple de la variante de la coque qui
  * dépend du choix de la coque.
- * @see CreateBlueprintType
+ * @see CreateHullType
  */
 class CreateCustomSpaceshipType extends AbstractType
 {

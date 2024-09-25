@@ -10,15 +10,15 @@
                 <div class="col">{{ form_row(form.role) }}</div>
             </div>
             <div class="row">
-                <div class="col">{{ form_row(form.className) }}</div>
-                <div class="col">{{ form_row(form.classVariant) }}</div>
+                <div class="col">{{ form_row(form.classificationName) }}</div>
+                <div class="col">{{ form_row(form.classificationVariant) }}</div>
             </div>
-            <span data-select-blueprints-target="blueprints" data-blueprints="{{ blueprints }}"></span>
+            <span data-select-blueprints-target="blueprints" data-blueprints="{{ hull }}"></span>
         </section>
-        <button type="submit" class="btn btn-primary">Select a blueprint</button>
+        <button type="submit" class="btn btn-primary">Select a hull</button>
     {{ form_end(form) }}
 
-    {% if blueprint is defined %}
-        <pre>{{ dump(blueprint) }}</pre>
+    {% if debug is defined %}
+        <pre>{{ dump(debug) }}</pre>
     {% endif %}
 {% endblock %}

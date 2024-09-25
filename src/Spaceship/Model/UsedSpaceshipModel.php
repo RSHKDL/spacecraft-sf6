@@ -2,7 +2,7 @@
 
 namespace App\Spaceship\Model;
 
-use App\Entity\SpaceshipClass;
+use App\Entity\MilitaryClassification;
 use App\Spaceship\Enum\ConformityInspectionStatus;
 use App\Spaceship\ComponentInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,12 +12,12 @@ final class UsedSpaceshipModel
 {
     private string $name;
     private string $hullNumber;
-    private SpaceshipClass $class;
+    private MilitaryClassification $class;
     private Collection $spaceshipComponents;
     private ConformityInspectionStatus $conformityInspectionStatus;
     public string $slug;
 
-    public function __construct(string $name, string $hullNumber, SpaceshipClass $spaceshipClass)
+    public function __construct(string $name, string $hullNumber, MilitaryClassification $spaceshipClass)
     {
         $this->name = $name;
         $this->hullNumber = $hullNumber;
@@ -36,7 +36,7 @@ final class UsedSpaceshipModel
         return $this->hullNumber;
     }
 
-    public function getClass(): SpaceshipClass
+    public function getClass(): MilitaryClassification
     {
         return $this->class;
     }

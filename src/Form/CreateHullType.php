@@ -2,12 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Manufacturer;
-use App\Entity\SpaceshipClass;
-use App\Entity\SpaceshipRole;
-use App\Model\Blueprint as BlueprintModel;
+
+use App\Model\Hull;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * dépend du choix de la coque.
  * @see CreateBaseSpaceshipType
  */
-class CreateBlueprintType extends AbstractType
+class CreateHullType extends AbstractType
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager
@@ -53,7 +50,7 @@ class CreateBlueprintType extends AbstractType
                     'data-select-mode' => 'basic'
                 ]
             ])
-            ->add('className', ChoiceType::class, [
+            ->add('classificationName', ChoiceType::class, [
                 'choices' => [],
                 'placeholder' => 'Choose the hull classification',
                 'label' => false,
@@ -63,7 +60,7 @@ class CreateBlueprintType extends AbstractType
                     'data-select-mode' => 'combinatorial'
                 ]
             ])
-            ->add('classVariant', ChoiceType::class, [
+            ->add('classificationVariant', ChoiceType::class, [
                 'choices' => [],
                 'placeholder' => 'Choose the hull classification variant',
                 'label' => false,
@@ -75,17 +72,18 @@ class CreateBlueprintType extends AbstractType
             ])
         ;
 
-        // Resetting the view transformer allow any values to be processed by a ChoiceType which is very useful in our case
+        // Resetting the view transformer allow any values to be processed
+        // by a ChoiceType which is very useful in our case
         $builder->get('manufacturer')->resetViewTransformers();
         $builder->get('role')->resetViewTransformers();
-        $builder->get('className')->resetViewTransformers();
-        $builder->get('classVariant')->resetViewTransformers();
+        $builder->get('classificationName')->resetViewTransformers();
+        $builder->get('classificationVariant')->resetViewTransformers();
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => BlueprintModel::class,
+            'data_class' => Hull::class,
             'validation_groups' => false
         ]);
     }

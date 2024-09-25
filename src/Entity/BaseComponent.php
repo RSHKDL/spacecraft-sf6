@@ -98,14 +98,14 @@ class BaseComponent implements ComponentInterface
     {
         if (!$this->spaceships->contains($spaceship)) {
             $this->spaceships[] = $spaceship;
-            $spaceship->addOption($this);
+            $spaceship->addComponent($this);
         }
     }
 
     public function removeSpaceship(Spaceship $spaceship): void
     {
         if ($this->spaceships->removeElement($spaceship)) {
-            $spaceship->removeOption($this);
+            $spaceship->removeComponent($this);
         }
     }
 }

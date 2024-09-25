@@ -2,7 +2,7 @@
 
 namespace App\Spaceship\Factory;
 
-use App\Entity\SpaceshipClass;
+use App\Entity\MilitaryClassification;
 use App\Spaceship\Model\UsedSpaceshipModel;
 
 final class UsedSpaceshipBuilder
@@ -52,7 +52,7 @@ final class UsedSpaceshipBuilder
         return $this;
     }
 
-    private function createShipClassification(): SpaceshipClass
+    private function createShipClassification(): MilitaryClassification
     {
         $parts = explode(' ', $this->fullClassName);
         if (count($parts) > 1) {
@@ -62,7 +62,7 @@ final class UsedSpaceshipBuilder
             $variant = null;
         }
 
-        $spaceshipClass = new SpaceshipClass();
+        $spaceshipClass = new MilitaryClassification();
         $spaceshipClass->setName($name);
         if ($variant) {
             $spaceshipClass->setVariant($variant);

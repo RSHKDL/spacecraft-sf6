@@ -1,10 +1,10 @@
 [
   {
     "name": "Corvette",
-    "hull": 300,
-    "speed": 160,
-    "evasion": 60,
-    "slots": {
+    "baseHull": 300,
+    "baseSpeed": 160,
+    "baseEvasion": 60,
+    "baseSections": {
       "weapons": 3,
       "utilities": {
         "small": 3,
@@ -17,6 +17,16 @@
   },
   {
     "name": "Frigate",
+    "baseHull": 400,
+    "baseSpeed": 120,
+    "baseEvasion": 20,
+    "baseSections": [
+      "bow",
+      "deck",
+      "stern",
+      "engine",
+      "bridge"
+    ],
     "variants": [
       "light",
       "heavy",

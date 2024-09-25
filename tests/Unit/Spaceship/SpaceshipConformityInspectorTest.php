@@ -4,8 +4,9 @@ namespace Unit\Spaceship;
 
 use App\Entity\PowerSupply;
 use App\Entity\Spaceship;
-use App\Entity\SpaceshipClass;
+use App\Entity\MilitaryClassification;
 use App\Spaceship\Enum\ConformityInspectionStatus;
+use App\Spaceship\Enum\MilitarySpaceshipClassification;
 use App\Spaceship\Model\UsedSpaceshipModel;
 use App\Spaceship\SpaceshipConformityInspector;
 use PHPUnit\Framework\TestCase;
@@ -53,7 +54,7 @@ class SpaceshipConformityInspectorTest extends TestCase
         $usedSpaceship = new UsedSpaceshipModel(
             'Rocinante',
             'xxx',
-            new SpaceshipClass()
+            new MilitaryClassification(MilitarySpaceshipClassification::CORVETTE->value)
         );
 
         self::assertFalse($inspectorService->isSpaceshipSalable($usedSpaceship));
@@ -65,7 +66,7 @@ class SpaceshipConformityInspectorTest extends TestCase
         $spaceship = new UsedSpaceshipModel(
             'Serenity',
             'xxx',
-            new SpaceshipClass()
+            new MilitaryClassification(MilitarySpaceshipClassification::CORVETTE->value)
         );
 
         $spaceship->setConformityInspectionStatus(ConformityInspectionStatus::APPROVED);

@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\SpaceshipRepository;
 use App\Spaceship\Enum\ConformityInspectionStatus;
 use App\Spaceship\ComponentInterface;
 use App\Spaceship\SpaceshipInterface;
@@ -10,38 +9,46 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table(name: 'app_spaceship')]
-#[ORM\Entity(repositoryClass: SpaceshipRepository::class)]
+#[ORM\Entity]
+#[ORM\Table(name: 'app_base_spaceship')]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'spaceship_type', type: 'string')]
+#[ORM\DiscriminatorMap([
+    'civilian' => CivilianSpaceship::class,
+    'military' => MilitarySpaceship::class,
+])]
 class Spaceship implements SpaceshipInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id = null;
+    protected ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 18)]
-    private string $hullNumber;
+    protected string $hullNumber;
 
     #[ORM\ManyToOne(targetEntity: Manufacturer::class)]
-    private Manufacturer $manufacturer;
-
-    private SpaceshipClass $class;
+    protected Manufacturer $manufacturer;
 
     #[ORM\OneToMany(mappedBy: 'spaceship', targetEntity: PaintJob::class)]
-    private Collection $paintJobs;
+    protected Collection $paintJobs;
+
+    #[ORM\OneToMany(mappedBy: 'spaceship', targetEntity: SpaceshipSection::class)]
+    protected Collection $sections;
 
     #[ORM\JoinTable(name: 'app_spaceships_options')]
     #[ORM\JoinColumn(name: 'spaceship_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'option_id', referencedColumnName: 'id')]
     #[ORM\ManyToMany(targetEntity: BaseComponent::class, inversedBy: 'spaceships')]
-    private Collection $options;
+    protected Collection $components;
 
-    private ConformityInspectionStatus $conformityInspectionStatus = ConformityInspectionStatus::INSPECTION_REQUIRED;
+    protected ConformityInspectionStatus $conformityInspectionStatus = ConformityInspectionStatus::INSPECTION_REQUIRED;
 
     public function __construct()
     {
         $this->paintJobs = new ArrayCollection();
-        $this->options = new ArrayCollection();
+        $this->sections = new ArrayCollection();
+        $this->components = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -57,16 +64,6 @@ class Spaceship implements SpaceshipInterface
     public function setManufacturer(Manufacturer $manufacturer): void
     {
         $this->manufacturer = $manufacturer;
-    }
-
-    public function getClass(): SpaceshipClass
-    {
-        return $this->class;
-    }
-
-    public function setClass(SpaceshipClass $class): void
-    {
-        $this->class = $class;
     }
 
     public function getHullNumber(): ?string
@@ -106,21 +103,51 @@ class Spaceship implements SpaceshipInterface
     /**
      * @return Collection<int, ComponentInterface>
      */
-    public function getOptions(): Collection
+    public function getComponents(): Collection
     {
-        return $this->options;
+        return $this->components;
     }
 
-    public function addOption(ComponentInterface $option): void
+    public function addComponent(ComponentInterface $component): void
     {
-        if (!$this->options->contains($option)) {
-            $this->options[] = $option;
+        if (!$this->components->contains($component)) {
+            $this->components[] = $component;
         }
     }
 
-    public function removeOption(ComponentInterface $option): void
+    public function removeComponent(ComponentInterface $component): void
     {
-        $this->options->removeElement($option);
+        $this->components->removeElement($component);
+    }
+
+    /**
+     * @return Collection<int, SpaceshipSection>
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(SpaceshipSection $section): static
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections->add($section);
+            $section->setSpaceship($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(SpaceshipSection $section): static
+    {
+        if ($this->sections->removeElement($section)) {
+            // set the owning side to null (unless already changed)
+            if ($section->getSpaceship() === $this) {
+                $section->setSpaceship(null);
+            }
+        }
+
+        return $this;
     }
 
     public function getConformityInspectionStatus(): ConformityInspectionStatus
